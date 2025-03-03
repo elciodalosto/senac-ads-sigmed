@@ -3,11 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --exit-child src/index.ts",
+    "db:migrate": "npx prisma migrate dev --name user-entity --create-only && npx prisma generate",
+    "db:push": "npx prisma db push"
+  },
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom"
+    ]
+  },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.8",
     "prisma": "^6.4.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "express": "^4.21.2"
   }
 }
