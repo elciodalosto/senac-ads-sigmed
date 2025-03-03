@@ -31,7 +31,6 @@ model User {
 
   prescriptions Prescription[]
   treatments    Treatment[]
-
 }
 
 model Patient {

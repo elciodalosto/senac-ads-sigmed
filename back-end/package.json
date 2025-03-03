@@ -8,14 +8,6 @@
     "db:migrate": "npx prisma migrate dev --name user-entity --create-only && npx prisma generate",
     "db:push": "npx prisma db push"
   },
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "es6",
-      "dom"
-    ]
-  },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.8",
@@ -25,6 +17,10 @@
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^8.2.3",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2"
   }
 }
