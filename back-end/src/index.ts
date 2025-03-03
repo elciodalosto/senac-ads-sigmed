@@ -15,6 +15,10 @@ async function main() {
 
   app.use(router)
 
+  app.get("/health", (req, res) => {
+    res.send("API SIGMED is running 🚀")
+  })
+
   app.all("*", (req: Request, res: Response) => {
     res.status(404).json({ error: `Route ${req.originalUrl} not found` })
   })

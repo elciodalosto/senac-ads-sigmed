@@ -1,17 +1,21 @@
 import { Request, Response } from "express"
 import { prisma } from "../index"
 import bcrypt from "bcrypt"
+import { HealthcareRole } from "@prisma/client"
 
 export const createUser = async (req: Request, res: Response) => {
   try {
     const { name, email, password, role } = req.body
+    if (!name || !email || !password || !role) {
+      res.status(400).json({ error: "Missing required fields" })
+    }
     const hashedPassword = await bcrypt.hash(password, 10)
     const newUser = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        role
+        role: role as HealthcareRole
       }
     })
     res.status(200).json(newUser)
@@ -45,7 +49,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const { id, name, email, password, role } = req.body
+    const { id } = req.params
+    const { name, email, password, role } = req.body
     const updatedUser = await prisma.user.update({
       where: {
         id: Number(id)
@@ -65,7 +70,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {
-    const { id } = req.body
+    const { id } = req.params
     const deletedUser = await prisma.user.delete({
       where: {
         id: Number(id)
