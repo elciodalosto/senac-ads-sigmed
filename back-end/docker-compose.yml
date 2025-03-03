@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0 # Versão do MySQL
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456 # Senha do usuário root
+      MYSQL_DATABASE: mydb # Nome do banco a ser criado
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: 123456 # Senha do usuário adicional
+    ports:
+      - "3310:3306" # Mapeamento de portas (host:container)
+    volumes:
+      - mysql_data:/var/lib/mysql # Volume para persistência de dados
+
+volumes:
+  mysql_data:
+    driver: local

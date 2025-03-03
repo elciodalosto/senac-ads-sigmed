@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum HealthcareRole {
+  MEDICO
+  ENFERMEIRO
+  TECNICO_ENFERMAGEM
+  TECNICO_FARMACIA
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      HealthcareRole
+  createdAt DateTime @default(now())
+
+  prescriptions Prescription[]
+  treatments    Treatment[]
+}
+
+model Patient {
+  id             Int      @id @default(autoincrement())
+  name           String
+  birthDate      DateTime
+  gender         Gender
+  medicalRecord  String   @unique
+  createdAt      DateTime @default(now())
+
+  prescriptions Prescription[]
+  treatments    Treatment[]
+
+  SideEffect SideEffect[]
+}
+
+model Medication {
+  id             Int      @id @default(autoincrement())
+  name           String
+  description    String?
+  dosageForm     String
+  concentration  String?
+  createdAt      DateTime @default(now())
+
+  prescriptionItems PrescriptionItem[]
+
+  Inventory Inventory[]
+
+  SideEffect SideEffect[]
+}
+
+model Prescription {
+  id          Int          @id @default(autoincrement())
+  patientId   Int
+  doctorId    Int
+  prescribedAt DateTime    @default(now())
+
+  patient     Patient      @relation(fields: [patientId], references: [id])
+  doctor      User         @relation(fields: [doctorId], references: [id])
+  items       PrescriptionItem[]
+
+  Treatment Treatment[]
+}
+
+model PrescriptionItem {
+  id               Int         @id @default(autoincrement())
+  prescriptionId   Int
+  medicationId     Int
+  dosage           String
+  frequency        String
+  duration         String
+
+  prescription     Prescription @relation(fields: [prescriptionId], references: [id])
+  medication       Medication   @relation(fields: [medicationId], references: [id])
+}
+
+model Treatment {
+  id              Int          @id @default(autoincrement())
+  patientId       Int
+  doctorId        Int
+  description     String
+  startDate       DateTime
+  endDate         DateTime?
+  createdAt       DateTime     @default(now())
+
+  patient         Patient      @relation(fields: [patientId], references: [id])
+  doctor          User         @relation(fields: [doctorId], references: [id])
+  prescriptions   Prescription[]
+}
+
+model SideEffect {
+  id          Int      @id @default(autoincrement())
+  patientId   Int
+  medicationId Int
+  description String
+  reportedAt  DateTime @default(now())
+
+  patient     Patient   @relation(fields: [patientId], references: [id])
+  medication  Medication @relation(fields: [medicationId], references: [id])
+}
+
+model Inventory {
+  id            Int      @id @default(autoincrement())
+  medicationId  Int
+  quantity      Int
+  lastUpdated   DateTime @default(now())
+
+  medication    Medication @relation(fields: [medicationId], references: [id])
+}
+
+
+enum Role {
+  MEDICO
+  ENFERMEIRO
+  TECNICO
+  ADMIN_ESTOQUE
+}
+
+enum Gender {
+  MASCULINO
+  FEMINO
+  OUTRO
+}
+
+
