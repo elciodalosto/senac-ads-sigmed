@@ -104,7 +104,7 @@ async function main() {
     ]
   })
 
-  console.log("Seed concluído com sucesso!")
+  console.log("Banco de dados populado com sucesso! 🚀")
 }
 
 main()
