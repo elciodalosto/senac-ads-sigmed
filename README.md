@@ -1,44 +1,47 @@
 # senac-ads-sigmed
-Sistema de Gestão de Medicamentos, Pacientes e Efeitos Colaterais - Projeto Integrador
+- SENAC SP EAD
+- Curso: Análise e Desenvolvimento de Sistemas
+- Disciplina: Projeto Integrador
+- Projeto mobile de Sistema de Gestão de Medicamentos, Pacientes e Efeitos Colaterais 
 
-## Autores
-
-- Aldrin Faustino Pereira      - Desenvolvedor
-- Elcio Augusto Dalosto        - Desenvolvedor
-- Giulyano Felipe Santos Silva - Desenvolvedor
-- Leonardo Chinelato Coelho    - Desenvolvedor
-- Murilo Ruiz Pedro - Função   - Desenvolvedor
-
-
+# Autores/Desenvolvedores
+* Aldrin Faustino Pereira
+* Elcio Augusto Dalosto
+* Giulyano Felipe Santos Silva
+* Leonardo Chinelato Coelho
+* Murilo Ruiz Pedro
 
 # Estrutura do projeto
 
-my-monorepo/ # Nome do diretório do projeto (senac-ads-sigmed)
-├── apps/                     # Main applications
-│   ├── mobile/               # React Native / Expo frontend
-│   │   ├── App.js            # Main app entry point
-│   │   ├── app.json          # Expo configuration
-│   │   ├── ...               # Other frontend code, components, screens, etc.
-│   │   ├── package.json      # Frontend dependencies
-│   │   ├── babel.config.js   # frontend babel configuration
-│   │   └── tsconfig.json     # Typescript configuration
-│   └── server/               # Node.js / Express backend
-│       ├── src/              # Backend source code
-│       │   ├── app.ts        # Main backend entry point
-│       │   ├── routes/       # API routes
-│       │   ├── controllers/  # Logic of each route
-│       │   ├── models/       # Business logic
-│       │   └── ...           # Other backend code
-│       ├── prisma/           # Prisma schema and migrations
-│       │   └── schema.prisma # Prisma schema file
-│       ├── package.json      # Backend dependencies
-│       └── tsconfig.json     # Backend typescript configuration
-├── packages/                 # Shared packages / libraries
-│   └── ui/                   # Shared UI components (optional)
-│   │   ├── Button.tsx        # Example shared component
-│   │   └── ...               # Other shared UI components
-│   └── utils/                # Shared utils
-│       └── helper.ts         # Example shared util
-├── .gitignore                # Git ignore file
-├── package.json              # Root dependencies and scripts
-└── README.md                 # Project documentation
+```
+senac-ads-sigmed/
+├── back-end/
+│   ├── node_modules/
+│   ├── prisma/
+│   ├── src/
+│   │   ├── controllers/
+│   │   └── routes/
+│   ├── .env
+│   ├── docker-compose.yml
+│   ├── package.json
+│   ├── README.md
+│   └── tsconfig.json
+├── front-end/
+│   ├── api/
+│   ├── app/
+│   │   └── pages/ 
+│   ├── assets/
+│   │   ├── fonts/ 
+│   │   └── images/ 
+│   ├── components/
+│   │   ├── tests/ 
+│   │   └── ui/ 
+│   ├── constants/
+│   ├── hooks/
+│   ├── node_modules/
+│   ├── app.json
+│   ├── package.json
+│   ├── README.md
+│   └── tsconfig.json 
+└── README.md # global
+```
