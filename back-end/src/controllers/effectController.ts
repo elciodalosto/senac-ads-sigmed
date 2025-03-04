@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../index"; 
 
 // Criar um novo efeito colateral
 export const createEffect = async (req: Request, res: Response) => {
