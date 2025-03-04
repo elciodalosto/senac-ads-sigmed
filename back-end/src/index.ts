@@ -3,6 +3,16 @@ import { PrismaClient } from "@prisma/client"
 import router from "./routes/index"
 import dotenv from "dotenv"
 import cors from "cors"
+import userRouter from "./userRouter";
+import effectRouter from "./effectRouter"; // Importando o novo router
+import { Router } from "express";
+
+const router = Router();
+
+router.use("/user", userRouter);
+router.use("/effect", effectRouter); // Adicionando as rotas de efeitos colaterais
+
+export default router;
 
 dotenv.config()
 
