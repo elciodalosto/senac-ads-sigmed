@@ -6,11 +6,13 @@ import cors from "cors"
 import userRouter from "./userRouter";
 import effectRouter from "./effectRouter"; // Importando o novo router
 import { Router } from "express";
+import patientRouter from "./patientRouter"; 
 
 const router = Router();
 
 router.use("/user", userRouter);
 router.use("/effect", effectRouter); // Adicionando as rotas de efeitos colaterais
+router.use("/patient", patientRouter);
 
 export default router;
 
