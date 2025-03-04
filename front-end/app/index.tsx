@@ -40,7 +40,7 @@ export default function HomeScreen() {
         </ThemedView>
       </View>
       <ThemedView style={styles.stepContainer}>
-        <Link href={"/pages/menu"} style={styles.prosseguir}>
+        <Link href={"/pages/login"} style={styles.prosseguir}>
           <ThemedText type="link">PROSSEGUIR</ThemedText>
         </Link>
       </ThemedView>

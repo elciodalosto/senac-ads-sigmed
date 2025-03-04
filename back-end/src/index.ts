@@ -13,30 +13,30 @@ app.use(cors({ origin: "*" }))
 const port = process.env.API_PORT || 9090
 
 async function main() {
-  app.use(express.json())
+  app.use(express.json());
 
-  app.use(router)
+  app.use(router);
 
   app.get("/health", (req, res) => {
-    res.send("API SIGMED is running 🚀")
-  })
+    res.send("API SIGMED is running 🚀");
+  });
 
   app.all("*", (req: Request, res: Response) => {
-    res.status(404).json({ error: `Route ${req.originalUrl} not found` })
-  })
+    res.status(404).json({ error: `Route ${req.originalUrl} not found` });
+  });
 
   app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`)
-  })
+    console.log(`Server is listening on port ${port}`);
+  });
 }
 
 main()
   .then(async () => {
-    await prisma.$connect()
-    console.log("Connected to the MySQL database 🚀")
+    await prisma.$connect();
+    console.log("Connected to the MySQL database 🚀");
   })
-  .catch(async e => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
