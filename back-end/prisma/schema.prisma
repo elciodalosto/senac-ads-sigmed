@@ -44,7 +44,9 @@ model Patient {
   prescriptions Prescription[]
   treatments    Treatment[]
 
-  SideEffect SideEffect[]
+  SideEffect     SideEffect[]
+  
+  effects        Effect[]  // Adicionando a relação oposta com o modelo Effect
 }
 
 model Medication {
@@ -121,6 +123,14 @@ model Inventory {
   medication    Medication @relation(fields: [medicationId], references: [id])
 }
 
+model Effect {
+  id         Int      @id @default(autoincrement())
+  patientId  Int
+  symptom    String
+  createdAt  DateTime @default(now())
+
+  Patient    Patient  @relation(fields: [patientId], references: [id])
+}
 
 enum Role {
   MEDICO
