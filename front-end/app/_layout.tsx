@@ -31,6 +31,12 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="pages/login" options={{ title: "Login", headerShown: false }} />
+        <Stack.Screen name="pages/menu" options={{ title: "Menu Principal"  }} />
+        <Stack.Screen name="pages/patientSearch" options={{ title: "Buscar Pacientes"  }} />
+        <Stack.Screen name="pages/colateralEffects" options={{ title: "Efeitos Colaterais"  }} />
+        <Stack.Screen name="pages/medicineStock" options={{ title: "Estoque"  }} />
+        <Stack.Screen name="pages/settings" options={{ title: "Configurações"  }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
