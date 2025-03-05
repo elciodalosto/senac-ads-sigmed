@@ -1,50 +1,101 @@
-# Welcome to your Expo app 👋
+# 📱 SIGMED - FRONT-END
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bem-vindo ao projeto **SIGMED**! Este é um aplicativo mobile desenvolvido em React Native para a disciplina de projeto integrador de desenvolvimento de sistemas orientado a dispositivos móveis e baseados na web.
 
-## Get started
+## 🚀 Tecnologias
 
-1. Install dependencies
+- React Native
+- Expo
+- TypeScript
 
-   ```bash
-   npm install
-   ```
+## 📋 Pré-requisitos
 
-2. Start the app
+Antes de começar, certifique-se de ter instalado:
 
-   ```bash
-    npx expo start
-   ```
+- [Node.js](https://nodejs.org/) (versão recomendada: 22.x ou superior)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) ou [npm](https://www.npmjs.com/get-npm)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/) (caso utilize Expo)
+- Emulador Android ou Xcode (para iOS) configurado
+- Baixe o EXPO no seu celular
 
-In the output, you'll find options to open the app in a
+## 🤖 Passo a passo para rodar o projeto
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. **Clone o repositório:**
 
 ```bash
-npm run reset-project
+git clone https://github.com/elciodalosto/senac-ads-sigmed
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. **Entre na pasta do projeto:**
 
-## Learn more
+```bash
+cd senac-ads-sigmed
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. **Instale as dependências:**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+yarn install ou npm install
+```
 
-## Join the community
+5. **Adicione seu IP na API:**
 
-Join our community of developers creating universal apps.
+Entre na pasta api
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+cd api
+```
+
+Adicione seu IP e mantenha o dispositivo móvel conectado na mesma rede do seu computador
+
+# 🌐 Como Ver o Seu IP?
+
+## 🖥️ Windows
+
+1. Abra o **CMD**.
+2. Digite o comando:
+
+   ```bash
+   ipconfig
+   ```
+
+3. Procure por algo como:
+
+```bash
+Endereço IPv4. . . . . . . . . . . . . : 192.168.x.x
+```
+
+## 🖥️ Linux
+
+1. Abra o **terminal**.
+2. Digite o comando:
+
+   ```bash
+   ifconfig
+   ```
+
+3. Procure por algo como:
+
+```bash
+inet 192.168.x.x
+```
+
+4. Adicione seu IP no axios base URL
+
+```bash
+export const api_sigmed = Axios.create({
+  baseURL: `http://127.20.10.02:9090`
+})
+```
+
+formato IP:PORTA_DA_API
+
+Obs: 🚨 A porta deve ser igual a da api
+
+5. **Rode o projeto:**
+
+```bash
+yarn start ou npm start
+```
+
+6. Escanei o QR Code que for exibido no terminal com seu celular
