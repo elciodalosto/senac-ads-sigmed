@@ -35,9 +35,8 @@ export default function Home() {
   const fetchInventoryItems = async () => {
     setLoading(true)
     try {
-      console.log("rodei")
       const response = await api_sigmed.get("/inventory/getall")
-      console.log("resultado ->", response.data)
+
       setinventoryItems(response.data)
     } catch (error) {
       console.log("Erro:", error)

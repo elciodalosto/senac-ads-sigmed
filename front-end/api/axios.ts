@@ -1,6 +1,7 @@
 import Axios from "axios"
 import Config from "react-native-config"
 
+// Adicione seu IP 🚨
 export const api_sigmed = Axios.create({
-  baseURL: `http://${Config.IP_LOCAL}:${Config.API_SIGMED_PORT}`
+  baseURL: `http://000.00.00.00:9090`
 })
