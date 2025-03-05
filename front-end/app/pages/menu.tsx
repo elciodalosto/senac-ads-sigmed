@@ -5,14 +5,18 @@ import { useContext, useLayoutEffect } from "react";
 import { Image, StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
 
 
-export default function Menu() {
+export default function MyMenu() {
   const navigation = useNavigation()
   const {user, logout} = useAuth()
   const router = useRouter()
 
   useLayoutEffect(() => {
+
     if (user?.name) {
-      navigation.setOptions({title: user.name})
+      navigation.setOptions({
+        title: user.name,
+        headerBackVisible: false
+      })
     }
   }, [user, navigation])
 
@@ -23,8 +27,9 @@ export default function Menu() {
   }
    
   return (
-    <View style={styles.container}>
-      <ThemedText style={{fontSize: 24, fontWeight: "bold"}}>Menu principal</ThemedText>
+
+    <View style={styles.container} pointerEvents="none">
+      <Text style={{fontSize: 24, fontWeight: "bold"}}>Menu principal</Text>
 
       <View style={styles.cards}>  
         <Link href={"/pages/patientSearch"} style={styles.prosseguir}>
@@ -47,7 +52,6 @@ export default function Menu() {
           <Text style={{color: "#FFF"}}> SAIR </Text>
         </Pressable>
       </View>
-
     </View>
   )
 }
@@ -58,7 +62,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 20,
-    marginBottom: "20%"
+    marginBottom: "20%",
+    zIndex: -1
   },
   prosseguir: {
     paddingVertical: 10,
@@ -77,7 +82,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: "80%",
-    gap: 10
+    gap: 10,
+    zIndex: 1
+
   },
   sigmedLogo: {
     width: Dimensions.get("window").width * 0.6,

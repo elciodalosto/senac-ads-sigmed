@@ -11,37 +11,31 @@ export default function HomeScreen() {
     router.push("/pages/menu");
   };
   return (
-    <ThemedView style={styles.view}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={styles.title}>
-          SIGMED
-        </ThemedText>
+    <View style={styles.view}>
+      <View style={styles.titleContainer}>
+        <Text style={[styles.title, styles.blackText]}>SIGMED</Text>
         <HelloWave />
-      </ThemedView>
+      </View>
       <View style={styles.contentContainer}>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle" style={styles.subtitle}>
+        <View style={styles.stepContainer}>
+          <Text style={[styles.subtitle, styles.blackText]}>
             Sistema de gestão da Saúde Clínica
-          </ThemedText>
-          <ThemedView style={styles.imageContainer}>
+          </Text>
+          <View style={styles.imageContainer}>
             <Image
               source={require("@/assets/images/adaptive-icon.png")}
               style={styles.sigmedLogo}
             />
-          </ThemedView>
-          <ThemedView style={styles.listaContainer}>
-            <ThemedText style={styles.lista}>
+          </View>
+          <View style={styles.listaContainer}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
-              {"\n"}
-              <Text>MEDICAMENTOS</Text>
-              {"\n"}
-              <Text>PACIENTES</Text>
-              {"\n"}
-              <Text>EFEITOS COLATERAIS</Text>
-              {"\n"}
-            </ThemedText>
-          </ThemedView>
-        </ThemedView>
+              <View style={styles.listaItems}>
+                <Text style={{fontSize: 16}} >Medicamentos</Text>
+                <Text style={{fontSize: 16}} >Pacientes</Text>
+                <Text style={{fontSize: 16}} >Efeitos Colaterais</Text>
+              </View>
+          </View>
+        </View>
       </View>
       <ThemedView style={styles.stepContainer}>
         <TouchableOpacity
@@ -55,18 +49,23 @@ export default function HomeScreen() {
   );
 }
 
+
 const styles = StyleSheet.create({
-  contentContainer: {
-    width: "100%",
-    alignItems: "center",
-    paddingHorizontal: 20,
-  },
   view: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 50,
     paddingBottom: 50,
+    backgroundColor: "#FFFFFF", // Fundo sempre branco
+  },
+  blackText: {
+    color: "#000", // Força o texto preto
+  },
+  contentContainer: {
+    width: "100%",
+    alignItems: "center",
+    paddingHorizontal: 20,
   },
   titleContainer: {
     flexDirection: "row",
@@ -80,6 +79,8 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+    fontSize: 32,
+    fontWeight: "bold",
   },
   subtitle: {
     textAlign: "center",
@@ -102,10 +103,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 20,
     marginBottom: 20,
+    gap: 5
   },
   lista: {
     textAlign: "left",
-    color: "#444",
     fontWeight: "600",
   },
   prosseguir: {
@@ -120,7 +121,16 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
   },
+  prosseguirText: {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 16
+  },
   subtitleLista: {
     fontWeight: "bold",
+    fontSize: 24,
   },
+  listaItems: {
+    gap: 1
+  }
 });
