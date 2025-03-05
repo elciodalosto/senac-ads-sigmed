@@ -21,8 +21,11 @@ export const createInventory = async (req: Request, res: Response) => {
 
 export const getAllMedications = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params
-    const inventories = await prisma.inventory.findMany()
+    const inventories = await prisma.inventory.findMany({
+      include: {
+        medication: true
+      }
+    })
     res.status(200).json(inventories)
   } catch (e) {
     res.status(500).json({ error: e })
