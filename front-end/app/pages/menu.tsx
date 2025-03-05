@@ -1,11 +1,21 @@
 import { ThemedText } from "@/components/ThemedText";
 import { useAuth } from "@/context/authContext";
-import { Link, useRouter } from "expo-router";
+import { Link, useNavigation, useRouter } from "expo-router";
+import { useContext, useLayoutEffect } from "react";
 import { Image, StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
 
+
 export default function Menu() {
+  const navigation = useNavigation()
   const {user, logout} = useAuth()
   const router = useRouter()
+
+  useLayoutEffect(() => {
+    if (user?.name) {
+      navigation.setOptions({title: user.name})
+    }
+  }, [user, navigation])
+
 
   const handleLogout = () => {
     logout()
