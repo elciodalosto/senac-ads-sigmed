@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { useRouter } from "expo-router";
 import {
   View,
@@ -13,12 +13,13 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { WrapText } from "lucide-react-native";import { useAuth } from "@/context/authContext";
 
 
 export default function Login() {
+
   const { login } = useAuth()
   const router = useRouter()
   const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ export default function Login() {
 
 
   const handleLogin = async () => {
+    
     if (!email.trim() || !password.trim()) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
@@ -59,13 +61,19 @@ export default function Login() {
             placeholder="exemplo@email.com"
             style={styles.input}
           />
+          <TextInput
+            value={email}
+            onChangeText={setEmail}
+            placeholder="exemplo@email.com"
+            style={styles.input}
+          />
         </View>
         <View style={styles.inputContainer}>
           <Text>Senha</Text>
           <TextInput
-            secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
+            secureTextEntry={!showPassword}
             placeholder="********"
             style={styles.input}
           />
@@ -87,14 +95,14 @@ export default function Login() {
             Esqueceu sua senha?
           </Text>
         </Link>
-        <TouchableOpacity onPress={handleLogin} style={styles.login}>
-          <Text style={{ color: "#FFF", fontSize: 16 }}>Entrar</Text>
-        </TouchableOpacity>
-        <Text style={styles.naoTemConta}>
-          Ainda não tem conta?
-          <TouchableOpacity onPress={() => console.log("Contato do admin do app")}>
-            <Text>Solicite seu acesso ao administrador do app</Text>
-          </TouchableOpacity>
+        <Pressable onPress={() => router.push("/pages/menu")} style={styles.login}>
+          {/* ANTES DE SUBIR O APP trocar o onPress para onPress={handleLogin} */}
+          <Text style={{color: "#FFF", fontSize: 16}}>Entrar</Text>
+        </Pressable>
+        <Text>Ainda não tem conta?
+        <Pressable onPress={() => console.log("admin do app")}>
+          <Text style={{fontWeight: "bold"}}>Solicite seu acesso ao administrador do app</Text>
+        </Pressable>
         </Text>
       </View>
     </View>
@@ -107,7 +115,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 10,
-    padding: 32,
+    paddingHorizontal: 32,
+    paddingTop: 90
   },
   login: {
     paddingVertical: 10,
@@ -125,7 +134,6 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "#7878788b",
     borderRadius: 10,
-    height: "55%",
     width: "100%",
     display: "flex",
     flexDirection: "column",

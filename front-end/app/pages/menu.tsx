@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { useAuth } from "@/context/authContext";
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useContext, useLayoutEffect } from "react";
-import { Image, StyleSheet, Text, View, Dimensions, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View, Dimensions, Pressable, TouchableOpacity } from "react-native";
 
 
 export default function MyMenu() {
@@ -28,12 +28,12 @@ export default function MyMenu() {
    
   return (
 
-    <View style={styles.container} pointerEvents="none">
+    <View style={styles.container}>
       <Text style={{fontSize: 24, fontWeight: "bold"}}>Menu principal</Text>
+      <View style={styles.cards}>
 
-      <View style={styles.cards}>  
         <Link href={"/pages/patientSearch"} style={styles.prosseguir}>
-          <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
+            <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
         </Link>
         <Link href={"/pages/medicineStock"} style={styles.prosseguir}>
           <ThemedText type="link">ESTOQUE</ThemedText>
