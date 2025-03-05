@@ -1,20 +1,13 @@
 import express, { Request, Response } from "express"
 import { PrismaClient } from "@prisma/client"
-import router from "./routes/index"
 import dotenv from "dotenv"
 import cors from "cors"
-import userRouter from "./userRouter";
-import effectRouter from "./effectRouter"; // Importando o novo router
-import { Router } from "express";
-import patientRouter from "./patientRouter"; 
 
-const router = Router();
+import { Router } from "express"
 
-router.use("/user", userRouter);
-router.use("/effect", effectRouter); // Adicionando as rotas de efeitos colaterais
-router.use("/patient", patientRouter);
+const router = Router()
 
-export default router;
+export default router
 
 dotenv.config()
 
@@ -25,30 +18,30 @@ app.use(cors({ origin: "*" }))
 const port = process.env.API_PORT || 9090
 
 async function main() {
-  app.use(express.json());
+  app.use(express.json())
 
-  app.use(router);
+  app.use(router)
 
   app.get("/health", (req, res) => {
-    res.send("API SIGMED is running 🚀");
-  });
+    res.send("API SIGMED is running 🚀")
+  })
 
   app.all("*", (req: Request, res: Response) => {
-    res.status(404).json({ error: `Route ${req.originalUrl} not found` });
-  });
+    res.status(404).json({ error: `Route ${req.originalUrl} not found` })
+  })
 
   app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
-  });
+    console.log(`Server is listening on port ${port}`)
+  })
 }
 
 main()
   .then(async () => {
-    await prisma.$connect();
-    console.log("Connected to the MySQL database 🚀");
+    await prisma.$connect()
+    console.log("Connected to the MySQL database 🚀")
   })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+  .catch(async e => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
