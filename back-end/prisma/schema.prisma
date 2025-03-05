@@ -46,8 +46,6 @@ model Patient {
   treatments    Treatment[]
 
   SideEffect     SideEffect[]
-  
-  effects        Effect[]  // Adicionando a relação oposta com o modelo Effect
 }
 
 model Medication {
