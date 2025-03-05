@@ -2,12 +2,7 @@ import express, { Request, Response } from "express"
 import { PrismaClient } from "@prisma/client"
 import dotenv from "dotenv"
 import cors from "cors"
-
-import { Router } from "express"
-
-const router = Router()
-
-export default router
+import router from "./routes"
 
 dotenv.config()
 
