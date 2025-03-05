@@ -4,6 +4,7 @@ import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
+import { Collapsible } from "@/components/Collapsible";
 
 export default function HomeScreen() {
   return (
@@ -29,21 +30,23 @@ export default function HomeScreen() {
             <ThemedText style={styles.lista}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
               {"\n"}
-              <Text>MEDICAMENTOS</Text>
+              <Collapsible title="MEDICAMENTOS">
+                <ThemedText>Texto sobre a gestão de medicamentos</ThemedText>
+              </Collapsible>
               {"\n"}
-              <Text>PACIENTES</Text>
+              <Text>- PACIENTES</Text>
               {"\n"}
-              <Text>EFEITOS COLATERAIS</Text>
+              <Text>- EFEITOS COLATERAIS</Text>
               {"\n"}
             </ThemedText>
           </ThemedView>
         </ThemedView>
       </View>
-      <ThemedView style={styles.stepContainer}>
+      <View style={styles.stepContainer}>
         <Link href={"/pages/login"} style={styles.prosseguir}>
           <ThemedText type="link">PROSSEGUIR</ThemedText>
         </Link>
-      </ThemedView>
+      </View>
     </ThemedView>
   );
 }
@@ -102,8 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",

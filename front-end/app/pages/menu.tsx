@@ -5,8 +5,6 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Menu() {
   return (
     <View style={styles.container}>
-      <Text>MENU PRINCIPAL</Text>
-
       <Link href={"/pages/patientSearch"} style={styles.prosseguir}>
         <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
       </Link>
@@ -19,7 +17,6 @@ export default function Menu() {
       <Link href={"/pages/settings"} style={styles.prosseguir}>
         <ThemedText type="link">CONFIGURAÇÕES</ThemedText>
       </Link>
-
     </View>
   );
 }
@@ -31,8 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
@@ -41,6 +37,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#64FCD9",
     color: "#000",
     fontWeight: "bold",
-    marginBottom: 15
+    marginBottom: 15,
   },
 });
