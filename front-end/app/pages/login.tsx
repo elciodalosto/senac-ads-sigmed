@@ -15,30 +15,33 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { WrapText } from "lucide-react-native";
+import { WrapText } from "lucide-react-native";import { useAuth } from "@/context/authContext";
+
 
 export default function Login() {
-  const [email, setEmail] = useState("email@exemplo.com");
-  const [password, setPassword] = useState("abc123");
-  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth()
+  const router = useRouter()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
-  const handleLogin = () => {
+
+
+  const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
 
-    Alert.alert("Sucesso", "Login realizado com sucesso!", [
-      { text: "OK", onPress: () => router.push("/pages/menu") },
-    ]);
-    const userData = {
-      email,
-      password,
-    };
-    console.log(JSON.stringify(userData));
-  };
+    try {
+      await login(email, password)
+      router.replace("/pages/menu")
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
+      Alert.alert("Erro", errorMessage)
+    }
+  }
 
-  const router = useRouter();
 
   return (
     <View style={styles.container}>
