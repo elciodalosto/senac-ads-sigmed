@@ -1,42 +1,40 @@
-import { Request, Response } from "express";
-import { prisma } from "../index"; 
+import { Request, Response } from "express"
+import { prisma } from "../index"
 
-// Criar um novo efeito colateral
 export const createEffect = async (req: Request, res: Response) => {
   try {
-    const { patientId, symptom } = req.body;
+    const { patientId, medicationId, description } = req.body
 
-    if (!patientId || !symptom) {
-      return res.status(400).json({ error: "Paciente e sintoma são obrigatórios." });
+    if (!patientId || !medicationId || !description) {
+      res.status(400).json({ error: "Campos obrigatórios incompletos!" })
     }
 
-    const effect = await prisma.effect.create({
+    const effect = await prisma.sideEffect.create({
       data: {
         patientId,
-        symptom,
-      },
-    });
+        medicationId,
+        description
+      }
+    })
 
-    res.status(201).json(effect);
+    res.status(201).json(effect)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao registrar o efeito colateral." });
+    console.error(error)
+    res.status(500).json({ error: "Erro ao registrar o efeito colateral." })
   }
-};
+}
 
-// Buscar efeitos colaterais anteriores de um paciente
 export const getEffectsByPatient = async (req: Request, res: Response) => {
   try {
-    const { patientId } = req.params;
+    const { patientId } = req.params
 
-    const effects = await prisma.effect.findMany({
-      where: { patientId: Number(patientId) },
-      orderBy: { createdAt: "desc" },
-    });
+    const effects = await prisma.sideEffect.findMany({
+      where: { patientId: Number(patientId) }
+    })
 
-    res.json(effects);
+    res.json(effects)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao buscar os efeitos colaterais." });
+    console.error(error)
+    res.status(500).json({ error: "Erro ao buscar os efeitos colaterais." })
   }
-};
+}
