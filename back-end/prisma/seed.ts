@@ -25,6 +25,7 @@ async function main() {
   const paciente = await prisma.patient.create({
     data: {
       name: "Carlos Oliveira",
+      cpf: "635.163.910-73",
       birthDate: new Date("1990-05-10"),
       gender: "MASCULINO",
       medicalRecord: "MR-12345"
