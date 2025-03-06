@@ -18,18 +18,18 @@ const BackButton = () => {
         alignItems: "center",
         alignSelf: "center",
         justifyContent: "center",
+        backgroundColor: "#333",
+        borderRadius: 10,
         padding: 10,
-        backgroundColor: "#F0F0F0",
-        borderRadius: 8,
-        width: "50%",
-        marginBottom: 20
+        marginTop: 20,
+        width: "80%"
       }}
     >
-      <ArrowLeft size={20} color="#333" />
+      <ArrowLeft size={20} color="#ffff" />
       <Text
         style={{
           marginLeft: 5,
-          color: "#333",
+          color: "#ffff",
           fontSize: 17,
           fontWeight: "bold"
         }}

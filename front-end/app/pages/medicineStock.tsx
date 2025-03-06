@@ -13,6 +13,7 @@ import {
 } from "react-native"
 import { Search, Layers, ArrowLeft } from "lucide-react-native"
 import { SearchBar } from "@/components/SearchBar"
+import BackButton from "@/components/ui/BackButton"
 
 interface InventoryItem {
   id: number
@@ -78,10 +79,7 @@ export default function MediceStock() {
         />
       )}
 
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <ArrowLeft size={20} color="white" />
-        <Text style={styles.backButtonText}>Voltar</Text>
-      </TouchableOpacity>
+      <BackButton />
     </View>
   )
 }
