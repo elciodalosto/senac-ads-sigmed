@@ -9,15 +9,21 @@ export default function MyMenu() {
   const navigation = useNavigation()
   const {user, logout} = useAuth()
   const router = useRouter()
+  let headerTitle: string
 
   useLayoutEffect(() => {
-
+  
     if (user?.name) {
-      navigation.setOptions({
-        title: user.name,
-        headerBackVisible: false
-      })
+       headerTitle = user.name
+    } else {
+      headerTitle = "Nome do usuário"
     }
+    
+    navigation.setOptions({
+      title: headerTitle,
+      headerBackVisible: false
+    })
+    
   }, [user, navigation])
 
 
