@@ -17,6 +17,6 @@ const router = Router()
 
 router.use("/user", userRouter)
 router.use("/inventory", invetoryRouter)
-router.use("/patients", patientRouter)
+router.use("/patient", patientRouter)
 
 export default router
