@@ -22,6 +22,7 @@ const BackButton = () => {
         borderRadius: 10,
         padding: 10,
         marginTop: 20,
+        marginBottom: 30,
         width: "80%"
       }}
     >

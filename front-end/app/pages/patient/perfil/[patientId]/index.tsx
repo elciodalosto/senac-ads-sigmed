@@ -1,10 +1,18 @@
-import { useRouter } from "expo-router"
+import { router, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
-import { View, Text, StyleSheet, ActivityIndicator, Button } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Button,
+  Pressable
+} from "react-native"
 import { api_sigmed } from "@/api/axios"
 import { useLocalSearchParams } from "expo-router"
 import { CircleUserRound } from "lucide-react-native"
 import BackButton from "@/components/ui/BackButton"
+import CustomButton from "@/components/ui/CustomButton"
 
 interface Patient {
   id: number
@@ -82,7 +90,18 @@ export default function PatientPerfil() {
           <Text style={styles.subtitle}>
             Cadastrado em: {new Date(patient.createdAt).toLocaleDateString()}
           </Text>
+          <View style={styles.buttonsContainer}>
+            <CustomButton
+              title="Tratamentos"
+              onPress={() => router.push("/pages/medicineStock")}
+            />
+            <CustomButton
+              title="Efeitos colaterais"
+              onPress={() => router.push("/pages/medicineStock")}
+            />
+          </View>
         </View>
+
         <BackButton />
       </View>
     </>
@@ -96,13 +115,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff"
   },
+  buttonsContainer: {
+    width: "100%",
+    gap: 10,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginTop: 20
+  },
   subtitlesContainer: {
     width: "100%",
     padding: 20,
     borderTopWidth: 1,
     borderTopColor: "#ccc",
     gap: 20,
-    height: "77%"
+    height: "75%"
   },
   headerPerfilContainer: {
     alignItems: "center"
