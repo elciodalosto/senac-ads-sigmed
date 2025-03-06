@@ -1,8 +1,9 @@
-import express from "express";
-import * as PatientController from "../controllers/patientController";
+import express from "express"
+import * as PatientController from "../controllers/patientController"
 
-const patientRouter = express.Router();
+const patientRouter = express.Router()
 
-patientRouter.get("/search", PatientController.searchPatient);
+patientRouter.get("/get/:id", PatientController.getPatient)
+patientRouter.get("/getall", PatientController.getAllPatients)
 
-export default patientRouter;
+export default patientRouter

@@ -2,6 +2,7 @@ import { api_sigmed } from "@/api/axios"
 import { Link, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
 import {
+  Button,
   FlatList,
   Image,
   StyleSheet,
@@ -11,7 +12,7 @@ import {
   View
 } from "react-native"
 import { Search, Layers, ArrowLeft } from "lucide-react-native"
-import { Router } from "expo-router"
+import { SearchBar } from "@/components/SearchBar"
 
 interface InventoryItem {
   id: number
@@ -26,7 +27,7 @@ interface InventoryItem {
   }
 }
 
-export default function Home() {
+export default function MediceStock() {
   const [inventoryItems, setinventoryItems] = useState([])
   const [loading, setLoading] = useState(true)
   const router = useRouter()
@@ -56,15 +57,11 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Estoque de medicamentos</Text>
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Pesquise o medicamento"
-          value={searchText}
-          onChangeText={setSearchText}
-        />
-        <Search size={20} />
-      </View>
+      <SearchBar
+        placeholder="Pesquise o medicamento"
+        value={searchText}
+        onChangeText={setSearchText}
+      />
       {loading ? (
         <Text>Carregando...</Text>
       ) : (

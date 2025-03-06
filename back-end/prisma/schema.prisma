@@ -36,10 +36,10 @@ model User {
 model Patient {
   id             Int      @id @default(autoincrement())
   name           String
-  cpf            String
+  cpf            String  @unique
   birthDate      DateTime
   gender         Gender
-  medicalRecord  String   @unique
+  medicalRecord  String  
   createdAt      DateTime @default(now())
 
   prescriptions Prescription[]
