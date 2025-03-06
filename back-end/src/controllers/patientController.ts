@@ -3,11 +3,11 @@ import { prisma } from "../index"
 
 export const getPatient = async (req: Request, res: Response) => {
   try {
-    const { cpf } = req.body
+    const { id } = req.params
 
     const patient = await prisma.patient.findUnique({
       where: {
-        cpf: cpf
+        id: Number(id)
       }
     })
 
@@ -15,7 +15,7 @@ export const getPatient = async (req: Request, res: Response) => {
       res.status(404).json({ error: "Paciente não encontrado." })
     }
 
-    res.json(patient)
+    res.status(200).json(patient)
   } catch (error) {
     res.status(500).json({ error: "Erro ao buscar paciente." })
   }

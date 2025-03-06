@@ -1,8 +1,16 @@
-import { FlatList, StyleSheet, Text, TextInput, View } from "react-native"
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from "react-native"
 import React, { useState, useEffect } from "react"
 import { api_sigmed } from "@/api/axios"
 import { Search, User } from "lucide-react-native"
 import { SearchBar } from "@/components/SearchBar"
+import { useRouter } from "expo-router"
 
 interface Patient {
   id: number
@@ -19,6 +27,7 @@ export default function PatientList() {
   const [loading, setLoading] = useState(true)
   const [searchText, setSearchText] = useState("")
   const [error, setError] = useState<Error | null>(null)
+  const router = useRouter()
 
   const fetchPatients = async () => {
     setLoading(true)
@@ -63,10 +72,13 @@ export default function PatientList() {
           data={filteredPatients}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }: { item: Patient }) => (
-            <View style={styles.card}>
+            <Pressable
+              style={styles.card}
+              onPress={() => router.push(`/pages/patient/${item.id}`)}
+            >
               <User size={24} />
               <Text style={styles.patientName}>{item?.name}</Text>
-            </View>
+            </Pressable>
           )}
         />
       )}
