@@ -11,7 +11,6 @@ import {
   View
 } from "react-native"
 import { Search, Layers, ArrowLeft } from "lucide-react-native"
-import { Router } from "expo-router"
 
 interface InventoryItem {
   id: number
@@ -26,7 +25,7 @@ interface InventoryItem {
   }
 }
 
-export default function Home() {
+export default function MediceStock() {
   const [inventoryItems, setinventoryItems] = useState([])
   const [loading, setLoading] = useState(true)
   const router = useRouter()
