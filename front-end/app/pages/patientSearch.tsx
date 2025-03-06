@@ -11,6 +11,7 @@ import { api_sigmed } from "@/api/axios"
 import { Search, User } from "lucide-react-native"
 import { SearchBar } from "@/components/SearchBar"
 import { useRouter } from "expo-router"
+import BackButton from "@/components/ui/BackButton"
 
 interface Patient {
   id: number
@@ -74,7 +75,7 @@ export default function PatientList() {
           renderItem={({ item }: { item: Patient }) => (
             <Pressable
               style={styles.card}
-              onPress={() => router.push(`/pages/patient/${item.id}`)}
+              onPress={() => router.push(`/pages/patient/perfil/${item.id}`)}
             >
               <User size={24} />
               <Text style={styles.patientName}>{item?.name}</Text>
@@ -82,6 +83,7 @@ export default function PatientList() {
           )}
         />
       )}
+      <BackButton />
     </View>
   )
 }
