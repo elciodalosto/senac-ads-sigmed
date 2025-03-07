@@ -29,6 +29,9 @@ model User {
   role      HealthcareRole
   createdAt DateTime @default(now())
 
+  resetToken  String?   // Token para recuperação de senha 
+  tokenExpires DateTime? // Validade do token 
+
   prescriptions Prescription[]
   treatments    Treatment[]
 }
