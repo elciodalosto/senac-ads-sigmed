@@ -152,8 +152,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   naoTemConta: {
-    left: -40,
-    color: "orangered",
+    color: "goldenrod",
     fontWeight: "bold",
   },
 });
