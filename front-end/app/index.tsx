@@ -45,7 +45,7 @@ export default function HomeScreen() {
           <ThemedText type="link">PROSSEGUIR</ThemedText>
         </TouchableOpacity>
       </ThemedView>
-    </ThemedView>
+    </View>
   );
 }
 

@@ -61,12 +61,6 @@ export default function Login() {
             placeholder="exemplo@email.com"
             style={styles.input}
           />
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="exemplo@email.com"
-            style={styles.input}
-          />
         </View>
         <View style={styles.inputContainer}>
           <Text>Senha</Text>
