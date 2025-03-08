@@ -1,13 +1,6 @@
 import { router, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Button,
-  Pressable
-} from "react-native"
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
 import { api_sigmed } from "@/api/axios"
 import { useLocalSearchParams } from "expo-router"
 import { CircleUserRound } from "lucide-react-native"
@@ -24,13 +17,13 @@ interface Patient {
   createdAt: string
 }
 
-export default function PatientPerfil() {
+export default function PatientSideEffectsPage() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>()
   const [patient, setPatient] = useState<Patient | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
-  const fetchPatientPerfil = async () => {
+  const fetchPatientSideEffects = async () => {
     try {
       const response = await api_sigmed.get(`/patient/get/${patientId}`)
       setPatient(response.data)
@@ -42,7 +35,7 @@ export default function PatientPerfil() {
   }
 
   useEffect(() => {
-    if (patientId) fetchPatientPerfil()
+    if (patientId) fetchPatientSideEffects()
   }, [patientId])
 
   if (loading) {
@@ -64,7 +57,7 @@ export default function PatientPerfil() {
   if (!patient) {
     return (
       <View style={styles.center}>
-        <Text>Paciente não encontrado</Text>
+        <Text>Efeitos colaterais não encontrados</Text>
       </View>
     )
   }
@@ -72,8 +65,7 @@ export default function PatientPerfil() {
   return (
     <View style={styles.container}>
       <View style={styles.headerPerfilContainer}>
-        <CircleUserRound size={70} color="black" />
-        <Text style={styles.title}>{patient.name}</Text>
+        <Text style={styles.title}>Efeitos colaterais</Text>
       </View>
 
       <View style={styles.subtitlesContainer}>
@@ -86,20 +78,6 @@ export default function PatientPerfil() {
         <Text style={styles.subtitle}>
           Cadastrado em: {new Date(patient.createdAt).toLocaleDateString()}
         </Text>
-        <View style={styles.buttonsContainer}>
-          <CustomButton
-            title="Tratamentos"
-            onPress={() =>
-              router.push(`/pages/patient/treatments/${patientId}`)
-            }
-          />
-          <CustomButton
-            title="Efeitos colaterais"
-            onPress={() =>
-              router.push(`/pages/patient/sideEffects/${patientId}`)
-            }
-          />
-        </View>
       </View>
 
       <BackButton />
@@ -113,13 +91,6 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: "center",
     backgroundColor: "#fff"
-  },
-  buttonsContainer: {
-    width: "100%",
-    gap: 10,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    marginTop: 20
   },
   subtitlesContainer: {
     width: "100%",
