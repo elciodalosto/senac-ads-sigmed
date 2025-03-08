@@ -1,29 +1,31 @@
-import { Request, Response } from "express";
-import { prisma } from "../index";
+import { Request, Response } from "express"
+import { prisma } from "../index"
 
-export const searchPatient = async (req: Request, res: Response) => {
+export const getPatient = async (req: Request, res: Response) => {
   try {
-    const { cpf, matricula } = req.query;
+    const { id } = req.params
 
-    if (!cpf && !matricula) {
-      return res.status(400).json({ error: "Informe CPF ou matrícula para buscar." });
-    }
-
-    const patient = await prisma.patient.findFirst({
+    const patient = await prisma.patient.findUnique({
       where: {
-        OR: [
-          { cpf: cpf ? String(cpf) : undefined },
-          { matricula: matricula ? String(matricula) : undefined },
-        ],
-      },
-    });
+        id: Number(id)
+      }
+    })
 
     if (!patient) {
-      return res.status(404).json({ error: "Paciente não encontrado." });
+      res.status(404).json({ error: "Paciente não encontrado." })
     }
 
-    return res.json(patient);
+    res.status(200).json(patient)
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao buscar paciente." });
+    res.status(500).json({ error: "Erro ao buscar paciente." })
   }
-};
+}
+
+export const getAllPatients = async (req: Request, res: Response) => {
+  try {
+    const patients = await prisma.patient.findMany()
+    res.status(200).json(patients)
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar pacientes." })
+  }
+}

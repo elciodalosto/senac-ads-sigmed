@@ -29,6 +29,9 @@ model User {
   role      HealthcareRole
   createdAt DateTime @default(now())
 
+  resetToken  String?   // Token para recuperação de senha 
+  tokenExpires DateTime? // Validade do token 
+
   prescriptions Prescription[]
   treatments    Treatment[]
 }
@@ -36,17 +39,16 @@ model User {
 model Patient {
   id             Int      @id @default(autoincrement())
   name           String
+  cpf            String  @unique
   birthDate      DateTime
   gender         Gender
-  medicalRecord  String   @unique
+  medicalRecord  String  
   createdAt      DateTime @default(now())
 
   prescriptions Prescription[]
   treatments    Treatment[]
 
   SideEffect     SideEffect[]
-  
-  effects        Effect[]  // Adicionando a relação oposta com o modelo Effect
 }
 
 model Medication {

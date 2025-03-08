@@ -1,31 +1,46 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Link, router } from "expo-router";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Menu() {
   return (
     <View style={styles.container}>
-      <Link href={"/pages/patientSearch"} style={styles.prosseguir}>
+      <TouchableOpacity
+        style={styles.prosseguir}
+        onPress={() => router.navigate("/pages/patientSearch")}
+      >
         <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
-      </Link>
-      <Link href={"/pages/colateralEffects"} style={styles.prosseguir}>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.prosseguir}
+        onPress={() => router.navigate("/pages/sideEffects")}
+      >
         <ThemedText type="link">EFEITOS COLATERAIS</ThemedText>
-      </Link>
-      <Link href={"/pages/medicineStock"} style={styles.prosseguir}>
-        <ThemedText type="link">ESTOQUE</ThemedText>
-      </Link>
-      <Link href={"/pages/settings"} style={styles.prosseguir}>
-        <ThemedText type="link">CONFIGURAÇÕES</ThemedText>
-      </Link>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.prosseguir}
+        onPress={() => router.navigate("/pages/medicineStock")}
+      >
+        <ThemedText type="link">ESTOQUE DE MEDICAMENTOS</ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.prosseguir}
+        onPress={() => router.navigate("/pages/settings")}
+      >
+        <ThemedText type="link">CONFIGURAÇÕES DA CONTA</ThemedText>
+      </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   prosseguir: {
     padding: 10,
