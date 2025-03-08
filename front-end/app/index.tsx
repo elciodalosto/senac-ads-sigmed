@@ -3,6 +3,8 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { Link } from "expo-router";
+import { Collapsible } from "@/components/Collapsible";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
@@ -33,16 +35,19 @@ export default function HomeScreen() {
             <ThemedText style={styles.lista}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
               {"\n"}
-              <Text>MEDICAMENTOS</Text>
+              <Text>* MEDICAMENTOS</Text>
               {"\n"}
-              <Text>PACIENTES</Text>
+              <Text>* PACIENTES</Text>
               {"\n"}
-              <Text>EFEITOS COLATERAIS</Text>
+              <Text>* SINTOMAS</Text>
+              {"\n"}
+              <Text>* EFEITOS COLATERAIS</Text>
               {"\n"}
             </ThemedText>
           </ThemedView>
         </ThemedView>
       </View>
+
       <ThemedView style={styles.stepContainer}>
         <TouchableOpacity
           style={styles.prosseguir}
@@ -109,8 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
@@ -122,5 +126,6 @@ const styles = StyleSheet.create({
   },
   subtitleLista: {
     fontWeight: "bold",
+    fontSize: 22
   },
 });

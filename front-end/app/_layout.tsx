@@ -37,6 +37,9 @@ export default function RootLayout() {
         <Stack.Screen name="pages/sideEffects" options={{ title: "Efeitos Colaterais"  }} />
         <Stack.Screen name="pages/medicineStock" options={{ title: "Estoque"  }} />
         <Stack.Screen name="pages/settings" options={{ title: "Configurações"  }} />
+        <Stack.Screen name="pages/help" options={{ title: "Central de Ajuda"  }} />
+        <Stack.Screen name="pages/accountDeletion" options={{ title: "Exclusão de Conta"  }} />
+        <Stack.Screen name="pages/passwordRecovery" options={{ title: "Recuperação e Alteração de Senha"  }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
