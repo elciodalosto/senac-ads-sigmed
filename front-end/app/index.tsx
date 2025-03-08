@@ -35,13 +35,13 @@ export default function HomeScreen() {
             <ThemedText style={styles.lista}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
               {"\n"}
-              <Collapsible title="MEDICAMENTOS">
-                <ThemedText>Texto sobre a gestão de medicamentos</ThemedText>
-              </Collapsible>
+              <Text>* MEDICAMENTOS</Text>
               {"\n"}
-              <Text>- PACIENTES</Text>
+              <Text>* PACIENTES</Text>
               {"\n"}
-              <Text>- EFEITOS COLATERAIS</Text>
+              <Text>* SINTOMAS</Text>
+              {"\n"}
+              <Text>* EFEITOS COLATERAIS</Text>
               {"\n"}
             </ThemedText>
           </ThemedView>
@@ -126,5 +126,6 @@ const styles = StyleSheet.create({
   },
   subtitleLista: {
     fontWeight: "bold",
+    fontSize: 22
   },
 });
