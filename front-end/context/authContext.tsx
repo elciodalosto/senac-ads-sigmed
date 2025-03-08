@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext, ReactNode } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api_sigmed } from "@/api/axios";
 
 interface User {
     id: number;
@@ -37,8 +38,8 @@ export function AuthProvider({children}: AuthProviderProps) {
 
     const login = async(email: string, password: string) => {
         try {
-            const response = await fetch("http://192.168.15.140:9090/user/getall") // COLOCAR O SEU IP
-            const users: User[] = await response.json()
+            const response = api_sigmed.get("/user/getall")
+            const users: User[] = (await response).data
 
             const foundUser = users.find(
                 (u: User) => u.email === email && u.password === password
@@ -50,7 +51,7 @@ export function AuthProvider({children}: AuthProviderProps) {
             setUser(foundUser)
         } catch (error) {
             if (error instanceof Error) {
-                throw new Error(error.message); // Garante que 'error' seja do tipo correto
+                throw new Error(error.message);
               } else {
                 throw new Error("Ocorreu um erro desconhecido.");
               }

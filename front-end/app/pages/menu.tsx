@@ -21,7 +21,8 @@ export default function MyMenu() {
     
     navigation.setOptions({
       title: headerTitle,
-      headerBackVisible: false
+      headerBackVisible: false,
+      
     })
     
   }, [user, navigation])
