@@ -3,9 +3,13 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { Link } from "expo-router";
+import { router } from "expo-router";
+import { TouchableOpacity } from "react-native";
 
 export default function HomeScreen() {
+  const onPressFunction = () => {
+    router.push("/pages/menu");
+  };
   return (
     <ThemedView style={styles.view}>
       <ThemedView style={styles.titleContainer}>
@@ -40,9 +44,12 @@ export default function HomeScreen() {
         </ThemedView>
       </View>
       <ThemedView style={styles.stepContainer}>
-        <Link href={"/pages/login"} style={styles.prosseguir}>
+        <TouchableOpacity
+          style={styles.prosseguir}
+          onPress={() => router.navigate("/pages/login")}
+        >
           <ThemedText type="link">PROSSEGUIR</ThemedText>
-        </Link>
+        </TouchableOpacity>
       </ThemedView>
     </ThemedView>
   );
