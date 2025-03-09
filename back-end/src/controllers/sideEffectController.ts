@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { prisma } from "../index"
 
-export const createEffect = async (req: Request, res: Response) => {
+export const createSideEffect = async (req: Request, res: Response) => {
   try {
     const { patientId, medicationId, description } = req.body
 
@@ -24,15 +24,18 @@ export const createEffect = async (req: Request, res: Response) => {
   }
 }
 
-export const getEffectsByPatient = async (req: Request, res: Response) => {
+export const getSideEffectsByPatient = async (req: Request, res: Response) => {
   try {
     const { patientId } = req.params
 
-    const effects = await prisma.sideEffect.findMany({
-      where: { patientId: Number(patientId) }
+    const sideEffects = await prisma.sideEffect.findMany({
+      where: { patientId: Number(patientId) },
+      include: {
+        medication: true
+      }
     })
 
-    res.json(effects)
+    res.json(sideEffects)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: "Erro ao buscar os efeitos colaterais." })

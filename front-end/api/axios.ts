@@ -11,6 +11,7 @@ import Axios from "axios"
 // 2 - Resultado: procure por inet para o IPv4 (ex: inet 192.168.x.x).
 
 // Adicione seu IP 🚨
+
 export const api_sigmed = Axios.create({
-  baseURL: `http://000.00.00.00:9090`
+  baseURL: `http://000.00.00:9090`
 })

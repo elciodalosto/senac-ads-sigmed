@@ -31,27 +31,21 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{flex: 1}}> 
-      <AuthProvider>
-        <ThemeProvider value={DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="pages/login" options={{ title: "Login", headerShown: false }} />
-            <Stack.Screen name="pages/menu" options={{
-              title: "Menu Principal", headerRight: () => (<Ionicons.Button backgroundColor={"#FFF"} color={"#000"} name='notifications-outline' size={26} onPress={() => router.push("/pages/notifications")} />) }}
-            />
-            
-            <Stack.Screen name="pages/notifications" options={{ title: "Notificações"  }} />
-            <Stack.Screen name="pages/patientSearch" options={{ title: "Buscar Pacientes"  }} />
-            <Stack.Screen name="pages/colateralEffects" options={{ title: "Efeitos Colaterais"  }} />
-            <Stack.Screen name="pages/medicineStock" options={{ title: "Estoque"  }} />
-            <Stack.Screen name="pages/settings" options={{ title: "Configurações"  }} />
-            <Stack.Screen name="pages/passwordRecovery" options={{ headerShown: false  }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="dark" />
-        </ThemeProvider>
-      </AuthProvider>
-    </GestureHandlerRootView>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="pages/login" options={{ title: "Login", headerShown: false }} />
+        <Stack.Screen name="pages/menu" options={{ title: "Menu Principal"  }} />
+        <Stack.Screen name="pages/patientSearch" options={{ title: "Buscar Pacientes"  }} />
+        <Stack.Screen name="pages/sideEffects" options={{ title: "Efeitos Colaterais"  }} />
+        <Stack.Screen name="pages/medicineStock" options={{ title: "Estoque"  }} />
+        <Stack.Screen name="pages/settings" options={{ title: "Configurações"  }} />
+        <Stack.Screen name="pages/help" options={{ title: "Central de Ajuda"  }} />
+        <Stack.Screen name="pages/accountDeletion" options={{ title: "Exclusão de Conta"  }} />
+        <Stack.Screen name="pages/passwordRecovery" options={{ title: "Recuperação e Alteração de Senha"  }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="auto" />
+    </ThemeProvider>
   );
 }

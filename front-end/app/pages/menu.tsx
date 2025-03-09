@@ -73,8 +73,7 @@ const styles = StyleSheet.create({
     zIndex: -1
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",

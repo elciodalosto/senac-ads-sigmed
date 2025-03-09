@@ -1,22 +1,17 @@
 import userRouter from "./userRouter"
 import invetoryRouter from "./inventoryRouter"
-import { Router } from "express"
 import patientRouter from "./patientRouter"
-import { Router } from "express";
-import userRouter from "./userRouter";
-import authRouter from "./authRouter";
+import sideEffectRouter from "./sideEffectRouter"
+import authRouter from "./authRouter"
 
-const router = Router();
-
-router.use("/user", userRouter);
-router.use("/auth", authRouter); 
-
-export default router;
+import { Router } from "express"
 
 const router = Router()
 
 router.use("/user", userRouter)
 router.use("/inventory", invetoryRouter)
 router.use("/patient", patientRouter)
+router.use("/sideeffect", sideEffectRouter)
+router.use("/auth", authRouter)
 
 export default router

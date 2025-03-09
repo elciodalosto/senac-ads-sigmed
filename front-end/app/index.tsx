@@ -3,6 +3,8 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { Link } from "expo-router";
+import { Collapsible } from "@/components/Collapsible";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
@@ -29,14 +31,20 @@ export default function HomeScreen() {
           </View>
           <View style={styles.listaContainer}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
-              <View style={styles.listaItems}>
-                <Text style={{fontSize: 16}} >Medicamentos</Text>
-                <Text style={{fontSize: 16}} >Pacientes</Text>
-                <Text style={{fontSize: 16}} >Efeitos Colaterais</Text>
-              </View>
-          </View>
-        </View>
+              {"\n"}
+              <Text>* MEDICAMENTOS</Text>
+              {"\n"}
+              <Text>* PACIENTES</Text>
+              {"\n"}
+              <Text>* SINTOMAS</Text>
+              {"\n"}
+              <Text>* EFEITOS COLATERAIS</Text>
+              {"\n"}
+            </ThemedText>
+          </ThemedView>
+        </ThemedView>
       </View>
+
       <ThemedView style={styles.stepContainer}>
         <TouchableOpacity
           style={styles.prosseguir}
@@ -110,8 +118,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   prosseguir: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
@@ -128,7 +135,6 @@ const styles = StyleSheet.create({
   },
   subtitleLista: {
     fontWeight: "bold",
-    fontSize: 24,
   },
   listaItems: {
     gap: 1
