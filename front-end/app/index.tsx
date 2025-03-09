@@ -113,11 +113,11 @@ const styles = StyleSheet.create({
   },
   prosseguir: {
     padding: 10,
-    width: "80%",
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    borderRadius: 15,
+    borderRadius: 10,
     backgroundColor: "#64FCD9",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
