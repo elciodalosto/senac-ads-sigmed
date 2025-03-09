@@ -6,6 +6,8 @@ CREATE TABLE `User` (
     `password` VARCHAR(191) NOT NULL,
     `role` ENUM('MEDICO', 'ENFERMEIRO', 'TECNICO_ENFERMAGEM', 'TECNICO_FARMACIA') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `resetToken` VARCHAR(191) NULL,
+    `tokenExpires` DATETIME(3) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -15,12 +17,13 @@ CREATE TABLE `User` (
 CREATE TABLE `Patient` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
+    `cpf` VARCHAR(191) NOT NULL,
     `birthDate` DATETIME(3) NOT NULL,
-    `gender` ENUM('MASCULINO', 'FEMINO', 'OUTRO') NOT NULL,
+    `gender` ENUM('MASCULINO', 'FEMININO', 'OUTRO') NOT NULL,
     `medicalRecord` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `Patient_medicalRecord_key`(`medicalRecord`),
+    UNIQUE INDEX `Patient_cpf_key`(`cpf`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
