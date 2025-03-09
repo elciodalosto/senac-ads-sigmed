@@ -18,8 +18,8 @@ import { useAuth } from "@/context/authContext";
 export default function Login() {
   const { login } = useAuth();
   const router = useRouter();
-  const [email, setEmail] = useState("dr.joao@email.com");
-  const [password, setPassword] = useState("senha123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
@@ -84,18 +84,23 @@ export default function Login() {
             Esqueceu sua senha?
           </Text>
         </Link>
-        <Pressable onPress={() => router.push("/pages/menu")} style={styles.login}>
+        <Pressable
+          onPress={() => router.push("/pages/menu")}
+          style={styles.login}
+        >
           {/* ANTES DE SUBIR O APP trocar o onPress para onPress={handleLogin} */}
           <Text style={{ color: "#FFF", fontSize: 16 }}>Entrar</Text>
         </Pressable>
-        <Text>
-          Ainda não tem conta?
-          <Pressable onPress={() => console.log("admin do app")}>
-            <Text style={{ fontWeight: "bold" }}>
-              Solicite seu acesso ao administrador do app
-            </Text>
-          </Pressable>
-        </Text>
+        <View>
+          <Text style={styles.naoTemConta}>
+            Ainda não tem conta?
+            <Pressable onPress={() => console.log("admin do app")}>
+              <Text style={{ fontWeight: "bold" }}>
+                Solicite seu acesso ao administrador do app
+              </Text>
+            </Pressable>
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -157,5 +162,6 @@ const styles = StyleSheet.create({
   naoTemConta: {
     color: "goldenrod",
     fontWeight: "bold",
+    marginBottom: 30
   },
 });
