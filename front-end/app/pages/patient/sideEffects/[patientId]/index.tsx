@@ -13,8 +13,8 @@ import BackButton from "@/components/ui/BackButton"
 import { Patient } from "@/types/patient"
 import { SideEffect } from "@/types/sideEffect"
 import Card from "@/components/Card"
-import CustomButton from "@/components/ui/CustomButton"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { HeartCrack } from "lucide-react-native"
 
 export default function PatientSideEffectsPage() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>()
@@ -77,23 +77,22 @@ export default function PatientSideEffectsPage() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", padding: 10 }}>
+      <View style={styles.headerPerfilContainer}>
+        <HeartCrack size={50} color="black" />
+        <Text style={styles.title}>Efeitos colaterais</Text>
+        <Text style={styles.title}>{patient.name}</Text>
+      </View>
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.headerPerfilContainer}>
-          <Text style={styles.title}>Efeitos colaterais</Text>
-          <Text style={styles.title}>{patient.name}</Text>
-        </View>
-
-        <View style={styles.subtitlesContainer}>
-          {sideEffects.map((sideEffect: SideEffect, index) => (
-            <Card
-              title={sideEffect.description}
-              description={`Medicamento: ${sideEffect.medication.name}`}
-              backgroundColor="#f0f8ff"
-              borderColor="#87cefa"
-            />
-          ))}
-        </View>
+        {sideEffects.map((sideEffect: SideEffect, index) => (
+          <Card
+            key={index}
+            title={sideEffect.description}
+            description={`Medicamento: ${sideEffect.medication.name}`}
+            backgroundColor="#f0f8ff"
+            borderColor="#87cefa"
+          />
+        ))}
       </ScrollView>
       <BackButton />
     </SafeAreaView>
@@ -111,16 +110,17 @@ const styles = StyleSheet.create({
     padding: 20,
     borderTopWidth: 1,
     borderTopColor: "#ccc",
-    gap: 20,
-    height: "75%"
+    gap: 20
   },
   headerPerfilContainer: {
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff"
   },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
   subtitle: {
     fontSize: 17,
     fontWeight: "bold"
   },
-  center: { flex: 1, justifyContent: "center", alignItems: "center" }
+  center: { justifyContent: "center", alignItems: "center" }
 })
