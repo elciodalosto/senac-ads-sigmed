@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   Alert,
-  Pressable,
   TouchableOpacity,
   Image,
   Dimensions,
@@ -39,71 +38,80 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("@/assets/images/adaptive-icon.png")}
-        style={styles.sigmedLogo}
-      />
-      <Text style={{ top: -25, fontSize: 42, fontWeight: "500" }}>
-        Faça seu login
-      </Text>
-      <View style={styles.logincard}>
-        <View style={styles.inputContainer}>
-          <Text>Email</Text>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="exemplo@email.com"
-            style={styles.input}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text>Senha</Text>
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-            placeholder="********"
-            style={styles.input}
-          />
-          <TouchableOpacity
-            style={styles.eye}
-            onPress={() => setShowPassword(!showPassword)}
-          >
-            <Ionicons
-              name={showPassword ? "eye-off" : "eye"}
-              size={24}
-              color="gray"
+    <>
+      <View style={styles.container}>
+        <Image
+          source={require("@/assets/images/adaptive-icon.png")}
+          style={styles.sigmedLogo}
+        />
+        <Text style={{ top: -25, fontSize: 42, fontWeight: "500" }}>
+          Faça seu login
+        </Text>
+        <View style={styles.logincard}>
+          <View style={styles.inputContainer}>
+            <Text>Email</Text>
+            <TextInput
+              value={email}
+              onChangeText={setEmail}
+              placeholder="exemplo@email.com"
+              style={styles.input}
             />
-          </TouchableOpacity>
-        </View>
-        <Link
-          href={`/pages/passwordRecovery?email=${encodeURIComponent(email)}`}
-        >
-          <Text style={{ textDecorationLine: "underline" }}>
-            Esqueceu sua senha?
-          </Text>
-        </Link>
-        <Pressable
-          onPress={() => router.push("/pages/menu")}
-          style={styles.login}
-        >
-          {/* ANTES DE SUBIR O APP trocar o onPress para onPress={handleLogin} */}
-          <Text style={{ color: "#FFF", fontSize: 16 }}>Entrar</Text>
-        </Pressable>
-        <View>
-          <Text style={styles.naoTemConta}>
-            Ainda não tem conta?
-            <TouchableOpacity onPress={() => Alert.alert("Aviso", "Cadastro de usuários é permitido apenas pelo setor responsável da sua instituição.\n\nEntre em contato com o administrador do aplicativo e solicite o seu.")}>
-              <Text>{""}</Text>
-              <Text style={{ fontWeight: "bold", color: "royalblue" }}>
-                Solicite acesso ao administrador do app
-              </Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text>Senha</Text>
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+              placeholder="********"
+              style={styles.input}
+            />
+            <TouchableOpacity
+              style={styles.eye}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={24}
+                color="gray"
+              />
             </TouchableOpacity>
-          </Text>
+          </View>
+          <Link
+            href={`/pages/passwordRecovery?email=${encodeURIComponent(email)}`}
+          >
+            <Text style={{ textDecorationLine: "underline" }}>
+              Esqueceu sua senha?
+            </Text>
+          </Link>
+          <TouchableOpacity
+            onPress={() => router.push("/pages/menu")}
+            style={styles.login}
+          >
+            {/* ANTES DE SUBIR O APP trocar o onPress para onPress={handleLogin} */}
+            <Text style={{ color: "#FFF", fontSize: 16 }}>Entrar</Text>
+          </TouchableOpacity>
+          <View>
+            <Text style={styles.naoTemConta}>
+              Ainda não tem conta?
+              <TouchableOpacity
+                onPress={() =>
+                  Alert.alert(
+                    "Aviso",
+                    "Cadastro de usuários é permitido apenas pelo setor responsável da sua instituição.\n\nEntre em contato com o administrador do aplicativo e solicite o seu."
+                  )
+                }
+              >
+                <Text>{""}</Text>
+                <Text style={{ fontWeight: "bold", color: "royalblue" }}>
+                  Solicite acesso ao administrador do app
+                </Text>
+              </TouchableOpacity>
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </>
   );
 }
 

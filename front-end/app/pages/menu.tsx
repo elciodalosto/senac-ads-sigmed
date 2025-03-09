@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { useAuth } from "@/context/authContext";
-import { Link, useNavigation, useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { useLayoutEffect } from "react";
 import {
   Image,
@@ -8,7 +8,6 @@ import {
   Text,
   View,
   Dimensions,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
 
@@ -37,48 +36,50 @@ export default function MyMenu() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 24, fontWeight: "bold" }}>Menu principal</Text>
-      <View style={styles.cards}>
-        <View>
-          <Image
-            source={require("@/assets/images/adaptive-icon.png")}
-            style={styles.sigmedLogo}
-          />
+    <>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>Menu principal</Text>
+        <View style={styles.cards}>
+          <View>
+            <Image
+              source={require("@/assets/images/adaptive-icon.png")}
+              style={styles.sigmedLogo}
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.prosseguir}
+            onPress={() => router.navigate("/pages/patientSearch")}
+          >
+            <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.prosseguir}
+            onPress={() => router.navigate("/pages/sideEffects")}
+          >
+            <ThemedText type="link">EFEITOS COLATERAIS</ThemedText>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.prosseguir}
+            onPress={() => router.navigate("/pages/medicineStock")}
+          >
+            <ThemedText type="link">ESTOQUE DE MEDICAMENTOS</ThemedText>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.prosseguir}
+            onPress={() => router.navigate("/pages/settings")}
+          >
+            <ThemedText type="link">CONFIGURAÇÕES DA CONTA</ThemedText>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handleLogout} style={styles.sair}>
+            <Text style={{ color: "#FFF" }}> Sair da conta </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.prosseguir}
-          onPress={() => router.navigate("/pages/patientSearch")}
-        >
-          <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.prosseguir}
-          onPress={() => router.navigate("/pages/sideEffects")}
-        >
-          <ThemedText type="link">EFEITOS COLATERAIS</ThemedText>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.prosseguir}
-          onPress={() => router.navigate("/pages/medicineStock")}
-        >
-          <ThemedText type="link">ESTOQUE DE MEDICAMENTOS</ThemedText>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.prosseguir}
-          onPress={() => router.navigate("/pages/settings")}
-        >
-          <ThemedText type="link">CONFIGURAÇÕES DA CONTA</ThemedText>
-        </TouchableOpacity>
-
-        <Pressable onPress={handleLogout} style={styles.sair}>
-          <Text style={{ color: "#FFF" }}> SAIR </Text>
-        </Pressable>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -93,11 +94,11 @@ const styles = StyleSheet.create({
   },
   prosseguir: {
     padding: 10,
-    width: "80%",
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    borderRadius: 15,
+    borderRadius: 10,
     backgroundColor: "#64FCD9",
     color: "#000",
     fontWeight: "bold",
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "80%",
+    width: "90%",
     gap: 10,
     zIndex: 1,
   },
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     padding: 10,
+    width: "90%",
     borderRadius: 10,
   },
 });
