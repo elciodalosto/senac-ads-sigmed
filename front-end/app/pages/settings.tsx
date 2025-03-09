@@ -1,52 +1,65 @@
+import BackButton from "@/components/ui/BackButton";
 import { router } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
   return (
-    <View style={styles.stepContainer}>
-      <View style={styles.menu}>
+    <>
+      <View style={styles.container}>
         <Text
-          style={styles.menuBtn}
-          onPress={() => router.navigate("/pages/passwordRecovery")}
-        >
-          Alterar a senha
-        </Text>
-        <Text
-          style={styles.menuBtn}
-          onPress={() => router.navigate("/pages/Localization")}
-        >
-          Localização
-        </Text>
-        <Text
-          style={styles.menuBtn}
-          onPress={() => router.navigate("/pages/notifications")}
-        >
-          Notificações
-        </Text>
-        <Text
-          style={styles.menuBtn}
-          onPress={() => router.navigate("/pages/accountDeletion")}
-        >
-          Excluir Conta
-        </Text>
-        <Text
-          style={styles.menuBtn}
-          onPress={() => router.navigate("/pages/help")}
-        >
-          Central de Ajuda
-        </Text>
-        <Text>{""}</Text>
-        <Text>{""}</Text>
-        <Text>{""}</Text>
-        <Text style={styles.voltar} onPress={() => router.back()}>
-          VOLTAR
-        </Text>
+          onLayout={() =>
+            Alert.alert(
+              "Aviso",
+              "As Features da tela de Configurações não estão previstas como parte da entrega do Projeto Integrador.\n\nSão apenas para exemplo de possíveis recursos para se implementar neste app"
+            )
+          }
+        ></Text>
+        <View style={styles.menu}>
+          <TouchableOpacity
+            style={styles.menuBtn}
+            onPress={() => router.navigate("/pages/passwordRecovery")}
+          >
+            <Text>Alterar a senha</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuBtn}
+            onPress={() => router.navigate("/pages/Localization")}
+          >
+            <Text>Localização</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuBtn}
+            onPress={() => router.navigate("/pages/notifications")}
+          >
+            <Text>Notificações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuBtn}
+            onPress={() => router.navigate("/pages/accountDeletion")}
+          >
+            <Text>Excluir Conta</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuBtn}
+            onPress={() => router.navigate("/pages/help")}
+          >
+            <Text>Central de Ajuda</Text>
+          </TouchableOpacity>
+
+          <Text>{""}</Text>
+          <Text>{""}</Text>
+          <Text>{""}</Text>
+        </View>
+        <View style={styles.container}>
+          <BackButton />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  container: { flex: 1, padding: 20, backgroundColor: "#fff" },
   menu: {
     textAlign: "center",
     alignContent: "center",
@@ -61,36 +74,19 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
-    width: "60%",
+    width: "90%",
     fontWeight: "bold",
     color: "#333",
     fontSize: 22,
     borderRadius: 15,
     borderColor: "#333",
     borderWidth: 2,
-    padding: 5,
+    padding: 15,
   },
   titleContainer: {
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 30,
     top: 55,
-  },
-  voltar: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    width: "80%",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    borderRadius: 15,
-    backgroundColor: "#222222",
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  stepContainer: {
-    width: "100%",
-    alignItems: "center",
-    marginBottom: 20,
   },
 });

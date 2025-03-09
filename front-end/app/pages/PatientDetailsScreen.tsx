@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import SideEffectsList from "../../components/SideEffectsList";
 import MedicineItem from "../../components/MedicineItem";
 import { Patient } from "../../components/tempInterfaces/Patient";
@@ -42,31 +35,33 @@ const PatientDetailsScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.sectionTitle}>Detalhes do Paciente</Text>
-      <Text style={styles.patientName}>{patient.name}</Text>
-      <View style={styles.sideEffectsContainer}>
-        <Text style={styles.sideEffectsTitle}>
-          Efeitos Colaterais Registrados
-        </Text>
-        <SideEffectsList sideEffects={patient.sideEffects} />
-      </View>
-      <View style={styles.searchBarContainer}>
-        <TextInput
-          style={styles.searchBar}
-          placeholder="Pesquisar..."
-          value={searchText}
-          onChangeText={setSearchText}
-        />
-      </View>
+    <>
+      <ScrollView style={styles.container}>
+        <Text style={styles.sectionTitle}>Detalhes do Paciente</Text>
+        <Text style={styles.patientName}>{patient.name}</Text>
+        <View style={styles.sideEffectsContainer}>
+          <Text style={styles.sideEffectsTitle}>
+            Efeitos Colaterais Registrados
+          </Text>
+          <SideEffectsList sideEffects={patient.sideEffects} />
+        </View>
+        <View style={styles.searchBarContainer}>
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Pesquisar..."
+            value={searchText}
+            onChangeText={setSearchText}
+          />
+        </View>
 
-      <View style={styles.medicinesContainer}>
-        <Text style={styles.sectionTitle}>Medicamentos</Text>
-        {patient.medicines.map((medicine, index) => (
-          <MedicineItem key={index} medicine={medicine} />
-        ))}
-      </View>
-    </ScrollView>
+        <View style={styles.medicinesContainer}>
+          <Text style={styles.sectionTitle}>Medicamentos</Text>
+          {patient.medicines.map((medicine, index) => (
+            <MedicineItem key={index} medicine={medicine} />
+          ))}
+        </View>
+      </ScrollView>
+    </>
   );
 };
 
