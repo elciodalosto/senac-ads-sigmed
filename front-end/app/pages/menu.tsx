@@ -1,6 +1,13 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Link, router } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import BackButton from "@/components/ui/BackButton";
+import { router } from "expo-router";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Menu() {
   return (
@@ -32,15 +39,20 @@ export default function Menu() {
       >
         <ThemedText type="link">CONFIGURAÇÕES DA CONTA</ThemedText>
       </TouchableOpacity>
+      <Image
+        source={require("@/assets/images/adaptive-icon.png")}
+        style={styles.sigmedLogo}
+      />
+      <BackButton />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   prosseguir: {
     padding: 10,
@@ -53,5 +65,10 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
     marginBottom: 15,
+  },
+  sigmedLogo: {
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.5,
+    resizeMode: "contain",
   },
 });

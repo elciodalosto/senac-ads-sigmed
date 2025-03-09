@@ -53,7 +53,7 @@ export default function HomeScreen() {
           style={styles.prosseguir}
           onPress={() => router.navigate("/pages/login")}
         >
-          <ThemedText type="link">PROSSEGUIR</ThemedText>
+          <Text style={styles.textProsseguir}>PROSSEGUIR  >></Text>
         </TouchableOpacity>
       </ThemedView>
     </ThemedView>
@@ -121,11 +121,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: 15,
     backgroundColor: "#64FCD9",
-    color: "#000",
+  },
+  textProsseguir: {
+    color: "#333",
+    fontSize: 18,
     fontWeight: "bold",
   },
   subtitleLista: {
     fontWeight: "bold",
-    fontSize: 22
+    fontSize: 22,
   },
 });

@@ -1,29 +1,27 @@
-import { Link, Stack } from "expo-router";
-import { StyleSheet, Text } from "react-native";
+import BackButton from "@/components/ui/BackButton";
+import { Stack } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: "Oops!" }} />
-      <Text style={styles.container}>
-        <Text>Caminho errado... esta tela não existe!</Text>
-        <Link href="/" style={styles.link}>
-          <Text>Volte para a home screen :)</Text>
-        </Link>
-      </Text>
+      <View style={styles.stepContainer}>
+        <Text> </Text>
+        <Text style={styles.aviso}>Esta rota não existe!</Text>
+        <BackButton />
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
+  aviso: {
+    fontSize: 28,
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+  stepContainer: {
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 20,
   },
 });

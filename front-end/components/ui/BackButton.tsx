@@ -1,43 +1,29 @@
-import React from "react"
-import { TouchableOpacity, Text } from "react-native"
-import { useRouter } from "expo-router"
-import { ArrowLeft } from "lucide-react-native"
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { router } from "expo-router";
 
 const BackButton = () => {
-  const router = useRouter()
-
-  const handleGoBack = () => {
-    router.back()
-  }
-
   return (
-    <TouchableOpacity
-      onPress={handleGoBack}
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        alignSelf: "center",
-        justifyContent: "center",
-        padding: 10,
-        backgroundColor: "#F0F0F0",
-        borderRadius: 8,
-        width: "50%",
-        marginBottom: 20
-      }}
-    >
-      <ArrowLeft size={20} color="#333" />
-      <Text
-        style={{
-          marginLeft: 5,
-          color: "#333",
-          fontSize: 17,
-          fontWeight: "bold"
-        }}
-      >
-        Voltar
-      </Text>
+    <TouchableOpacity style={styles.voltar} onPress={() => router.back()}>
+      <Text style={styles.textVoltar}>VOLTAR</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
+const styles = StyleSheet.create({
+  voltar: {
+    position: "fixed",
+    paddingVertical: 15,
+    width: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    borderRadius: 15,
+    backgroundColor: "#333",
+  },
+  textVoltar: {
+    color: "#FFFFFF",
+    fontSize: 18,
+  },
+});
 
-export default BackButton
+export default BackButton;

@@ -1,12 +1,20 @@
-import { Link } from "expo-router";
-import { Image, StyleSheet, Text, View } from "react-native";
+import BackButton from "@/components/ui/BackButton";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Home() {
   return (
-    <View>
+    <View style={styles.stepContainer}>
       <Text>NOTIFICAÇÕES</Text>
+      <Text>Recurso extra - não planejado para o projeto</Text>
+      <BackButton />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  stepContainer: {
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+});
