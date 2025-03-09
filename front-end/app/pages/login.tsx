@@ -94,11 +94,12 @@ export default function Login() {
         <View>
           <Text style={styles.naoTemConta}>
             Ainda não tem conta?
-            <Pressable onPress={() => console.log("admin do app")}>
-              <Text style={{ fontWeight: "bold" }}>
-                Solicite seu acesso ao administrador do app
+            <TouchableOpacity onPress={() => Alert.alert("Aviso", "Cadastro de usuários é permitido apenas pelo setor responsável da sua instituição.\n\nEntre em contato com o administrador do aplicativo e solicite o seu.")}>
+              <Text>{""}</Text>
+              <Text style={{ fontWeight: "bold", color: "royalblue" }}>
+                Solicite acesso ao administrador do app
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </Text>
         </View>
       </View>
@@ -160,8 +161,8 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   naoTemConta: {
-    color: "goldenrod",
+    // color: "royal",
     fontWeight: "bold",
-    marginBottom: 30
+    marginBottom: 30,
   },
 });

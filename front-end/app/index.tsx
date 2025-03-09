@@ -1,10 +1,8 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-
 import { HelloWave } from "@/components/HelloWave";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import React from "react";
 
 export default function HomeScreen() {
   return (
@@ -27,27 +25,23 @@ export default function HomeScreen() {
           <View style={styles.listaContainer}>
             <View style={styles.listaItems}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
-              <Text>{"\n"}</Text>
-              <Text> * MEDICAMENTOS</Text>
-              <Text>{"\n"}</Text>
-              <Text> * PACIENTES</Text>
-              <Text>{"\n"}</Text>
-              <Text> * SINTOMAS</Text>
-              <Text>{"\n"}</Text>
-              <Text> * EFEITOS COLATERAIS</Text>
+              <Text> - MEDICAMENTOS</Text>
+              <Text> - PACIENTES</Text>
+              <Text> - SINTOMAS</Text>
+              <Text> - EFEITOS COLATERAIS</Text>
             </View>
           </View>
         </View>
       </View>
 
-      <ThemedView style={styles.stepContainer}>
+      <View style={styles.stepContainer}>
         <TouchableOpacity
           style={styles.prosseguir}
           onPress={() => router.navigate("/pages/login")}
         >
-          <ThemedText type="link">PROSSEGUIR</ThemedText>
+          <Text style={styles.prosseguirText}>PROSSEGUIR >></Text>
         </TouchableOpacity>
-      </ThemedView>
+      </View>
     </View>
   );
 }
@@ -77,7 +71,6 @@ const styles = StyleSheet.create({
   stepContainer: {
     width: "100%",
     alignItems: "center",
-    marginBottom: 20,
   },
   title: {
     textAlign: "center",
@@ -86,7 +79,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 22,
     marginBottom: 10,
     width: "100%",
   },
@@ -98,18 +91,25 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "100%",
     alignItems: "center",
-    marginBottom: 20,
   },
   listaContainer: {
     width: "100%",
     alignItems: "flex-start",
-    paddingHorizontal: 20,
-    marginBottom: 20,
-    gap: 5,
+    padding: 25,
+    marginBottom: 40,
+    borderRadius: 12,
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 9,
+
   },
   lista: {
     textAlign: "left",
     fontWeight: "600",
+    
   },
   prosseguir: {
     padding: 10,
@@ -119,18 +119,25 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: 15,
     backgroundColor: "#64FCD9",
-    color: "#000",
-    fontWeight: "bold",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   prosseguirText: {
+    color: "#555",
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
   },
   subtitleLista: {
     fontWeight: "bold",
+    fontSize: 18,
   },
   listaItems: {
-    gap: 1,
+    gap: 8,
+    width: "100%",
+    alignItems: "flex-start",
   },
 });
