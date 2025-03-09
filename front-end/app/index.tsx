@@ -3,15 +3,10 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { Link } from "expo-router";
-import { Collapsible } from "@/components/Collapsible";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
 export default function HomeScreen() {
-  const onPressFunction = () => {
-    router.push("/pages/menu");
-  };
   return (
     <View style={styles.view}>
       <View style={styles.titleContainer}>
@@ -30,19 +25,19 @@ export default function HomeScreen() {
             />
           </View>
           <View style={styles.listaContainer}>
+            <View style={styles.listaItems}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
-              {"\n"}
-              <Text>* MEDICAMENTOS</Text>
-              {"\n"}
-              <Text>* PACIENTES</Text>
-              {"\n"}
-              <Text>* SINTOMAS</Text>
-              {"\n"}
-              <Text>* EFEITOS COLATERAIS</Text>
-              {"\n"}
-            </ThemedText>
-          </ThemedView>
-        </ThemedView>
+              <Text>{"\n"}</Text>
+              <Text> * MEDICAMENTOS</Text>
+              <Text>{"\n"}</Text>
+              <Text> * PACIENTES</Text>
+              <Text>{"\n"}</Text>
+              <Text> * SINTOMAS</Text>
+              <Text>{"\n"}</Text>
+              <Text> * EFEITOS COLATERAIS</Text>
+            </View>
+          </View>
+        </View>
       </View>
 
       <ThemedView style={styles.stepContainer}>
@@ -56,7 +51,6 @@ export default function HomeScreen() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   view: {
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 20,
     marginBottom: 20,
-    gap: 5
+    gap: 5,
   },
   lista: {
     textAlign: "left",
@@ -131,12 +125,12 @@ const styles = StyleSheet.create({
   prosseguirText: {
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: 16
+    fontSize: 16,
   },
   subtitleLista: {
     fontWeight: "bold",
   },
   listaItems: {
-    gap: 1
-  }
+    gap: 1,
+  },
 });

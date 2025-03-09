@@ -1,10 +1,8 @@
-import { ThemedText } from "@/components/ThemedText";
-import { Link, useNavigation } from "expo-router";
+import { Link } from "expo-router";
 import { useRouter } from "expo-router";
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   TextInput,
   Alert,
@@ -13,37 +11,32 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { useContext, useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { WrapText } from "lucide-react-native";import { useAuth } from "@/context/authContext";
-
+import { useAuth } from "@/context/authContext";
 
 export default function Login() {
-
-  const { login } = useAuth()
-  const router = useRouter()
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-
-
+  const { login } = useAuth();
+  const router = useRouter();
+  const [email, setEmail] = useState("dr.joao@email.com");
+  const [password, setPassword] = useState("senha123");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
-    
     if (!email.trim() || !password.trim()) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
 
     try {
-      await login(email, password)
-      router.replace("/pages/menu")
+      await login(email, password);
+      router.replace("/pages/menu");
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
-      Alert.alert("Erro", errorMessage)
+      const errorMessage =
+        error instanceof Error ? error.message : "Erro desconhecido";
+      Alert.alert("Erro", errorMessage);
     }
-  }
-
+  };
 
   return (
     <View style={styles.container}>
@@ -51,7 +44,9 @@ export default function Login() {
         source={require("@/assets/images/adaptive-icon.png")}
         style={styles.sigmedLogo}
       />
-      <Text style={{ top: -25, fontSize: 42, fontWeight: "500" }}>Faça seu login</Text>
+      <Text style={{ top: -25, fontSize: 42, fontWeight: "500" }}>
+        Faça seu login
+      </Text>
       <View style={styles.logincard}>
         <View style={styles.inputContainer}>
           <Text>Email</Text>
@@ -91,12 +86,15 @@ export default function Login() {
         </Link>
         <Pressable onPress={() => router.push("/pages/menu")} style={styles.login}>
           {/* ANTES DE SUBIR O APP trocar o onPress para onPress={handleLogin} */}
-          <Text style={{color: "#FFF", fontSize: 16}}>Entrar</Text>
+          <Text style={{ color: "#FFF", fontSize: 16 }}>Entrar</Text>
         </Pressable>
-        <Text>Ainda não tem conta?
-        <Pressable onPress={() => console.log("admin do app")}>
-          <Text style={{fontWeight: "bold"}}>Solicite seu acesso ao administrador do app</Text>
-        </Pressable>
+        <Text>
+          Ainda não tem conta?
+          <Pressable onPress={() => console.log("admin do app")}>
+            <Text style={{ fontWeight: "bold" }}>
+              Solicite seu acesso ao administrador do app
+            </Text>
+          </Pressable>
         </Text>
       </View>
     </View>
@@ -110,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     paddingHorizontal: 32,
-    paddingTop: 90
+    paddingTop: 90,
   },
   login: {
     paddingVertical: 10,
