@@ -1,10 +1,12 @@
 import React from "react"
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import { Edit3, Trash2 } from "lucide-react-native"
+import { Prescription } from "@/types/treatment"
 
 type CardProps = {
   title: string
   description: string
+  data: Prescription[]
   backgroundColor?: string
   borderColor?: string
   showEdit?: boolean
@@ -13,9 +15,10 @@ type CardProps = {
   onDelete?: () => void
 }
 
-const Card: React.FC<CardProps> = ({
+const TreatmentCard: React.FC<CardProps> = ({
   title,
   description,
+  data,
   backgroundColor = "#fff",
   borderColor = "black",
   showEdit = false,
@@ -27,15 +30,21 @@ const Card: React.FC<CardProps> = ({
     <View style={[styles.card, { backgroundColor, borderColor }]}>
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
-        {Array.isArray(description) ? (
-          description.map((item, index) => (
-            <Text key={index} style={styles.description}>
-              - {item}
+        {data.map(prescription => (
+          <View key={prescription.id} style={styles.prescriptionContainer}>
+            <Text style={styles.date}>
+              Prescrito em:{" "}
+              {new Date(prescription.prescribedAt).toLocaleDateString()}
             </Text>
-          ))
-        ) : (
-          <Text style={styles.description}>{description}</Text>
-        )}
+            {prescription.items.map(item => (
+              <View key={item.id} style={styles.itemContainer}>
+                <Text style={styles.description}>
+                  • {item.dosage} - {item.frequency} - {item.duration}
+                </Text>
+              </View>
+            ))}
+          </View>
+        ))}
       </View>
       <View style={styles.icons}>
         {showEdit && (
@@ -81,10 +90,22 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     maxWidth: "90%"
   },
+  date: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#666",
+    marginBottom: 4
+  },
   description: {
     fontSize: 14,
     color: "#666",
     maxWidth: "90%"
+  },
+  prescriptionContainer: {
+    marginBottom: 8
+  },
+  itemContainer: {
+    paddingLeft: 8
   },
   icons: {
     flexDirection: "row",
@@ -95,4 +116,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Card
+export default TreatmentCard

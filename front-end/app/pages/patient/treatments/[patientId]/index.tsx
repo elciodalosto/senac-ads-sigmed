@@ -4,8 +4,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
-  ScrollView,
-  Button
+  ScrollView
 } from "react-native"
 import { api_sigmed } from "@/api/axios"
 import { useLocalSearchParams } from "expo-router"
@@ -15,11 +14,13 @@ import { SideEffect } from "@/types/sideEffect"
 import Card from "@/components/Card"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ClipboardPlus } from "lucide-react-native"
+import { Treatment } from "@/types/treatment"
+import TreatmentCard from "@/components/TreatmentCard"
 
 export default function PatientTreatmentsPage() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>()
   const [patient, setPatient] = useState<Patient | null>(null)
-  const [sideEffects, setSideEffects] = useState<SideEffect[]>([])
+  const [patientTreatments, setPatientTreatments] = useState<Treatment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
@@ -36,8 +37,8 @@ export default function PatientTreatmentsPage() {
 
   const fetchPatientTreatments = async () => {
     try {
-      const response = await api_sigmed.get(`/sideeffect/get/${patientId}`)
-      setSideEffects(response.data)
+      const response = await api_sigmed.get(`/treatment/getall/${patientId}`)
+      setPatientTreatments(response.data)
     } catch (err: any) {
       setError(err)
     } finally {
@@ -97,11 +98,12 @@ export default function PatientTreatmentsPage() {
           <Text style={styles.title}>{patient.name} </Text>
         </View>
         <ScrollView contentContainerStyle={styles.container}>
-          {sideEffects.map((sideEffect: SideEffect, index) => (
-            <Card
+          {patientTreatments.map((treatment: Treatment, index) => (
+            <TreatmentCard
               key={index}
-              title={sideEffect.description}
-              description={`Medicamento: ${sideEffect.medication.name}`}
+              title={treatment.description}
+              data={treatment.prescriptions}
+              description="Prescrições"
               backgroundColor="#f0f8ff"
               borderColor="#87cefa"
             />
