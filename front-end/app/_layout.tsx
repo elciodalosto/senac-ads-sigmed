@@ -1,15 +1,16 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { router, Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { AuthProvider } from '@/context/authContext';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
-import { Pressable } from 'react-native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import "react-native-reanimated";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { AuthProvider } from "@/context/authContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -17,7 +18,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -31,21 +32,50 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="pages/login" options={{ title: "Login", headerShown: false }} />
-        <Stack.Screen name="pages/menu" options={{ title: "Menu Principal"  }} />
-        <Stack.Screen name="pages/patientSearch" options={{ title: "Buscar Pacientes"  }} />
-        <Stack.Screen name="pages/sideEffects" options={{ title: "Efeitos Colaterais"  }} />
-        <Stack.Screen name="pages/medicineStock" options={{ title: "Estoque"  }} />
-        <Stack.Screen name="pages/settings" options={{ title: "Configurações"  }} />
-        <Stack.Screen name="pages/help" options={{ title: "Central de Ajuda"  }} />
-        <Stack.Screen name="pages/accountDeletion" options={{ title: "Exclusão de Conta"  }} />
-        <Stack.Screen name="pages/passwordRecovery" options={{ title: "Recuperação e Alteração de Senha"  }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="pages/login"
+            options={{ title: "Login", headerShown: false }}
+          />
+          <Stack.Screen
+            name="pages/menu"
+            options={{ title: "Menu Principal" }}
+          />
+          <Stack.Screen
+            name="pages/patientSearch"
+            options={{ title: "Buscar Pacientes" }}
+          />
+          <Stack.Screen
+            name="pages/sideEffects"
+            options={{ title: "Efeitos Colaterais" }}
+          />
+          <Stack.Screen
+            name="pages/medicineStock"
+            options={{ title: "Estoque" }}
+          />
+          <Stack.Screen
+            name="pages/settings"
+            options={{ title: "Configurações" }}
+          />
+          <Stack.Screen
+            name="pages/help"
+            options={{ title: "Central de Ajuda" }}
+          />
+          <Stack.Screen
+            name="pages/accountDeletion"
+            options={{ title: "Exclusão de Conta" }}
+          />
+          <Stack.Screen
+            name="pages/passwordRecovery"
+            options={{ title: "Recuperação e Alteração de Senha" }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
