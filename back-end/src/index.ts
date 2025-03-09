@@ -3,6 +3,9 @@ import { PrismaClient } from "@prisma/client"
 import dotenv from "dotenv"
 import cors from "cors"
 import router from "./routes"
+import medicationRouter from "./routes/medicationRouter";
+
+app.use("/medications", medicationRouter);
 
 dotenv.config()
 
