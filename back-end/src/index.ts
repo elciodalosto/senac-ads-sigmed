@@ -5,7 +5,6 @@ import cors from "cors"
 import router from "./routes"
 import medicationRouter from "./routes/medicationRouter";
 
-app.use("/medications", medicationRouter);
 
 dotenv.config()
 
