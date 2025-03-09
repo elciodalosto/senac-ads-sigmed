@@ -13,26 +13,23 @@ export default function HomeScreen() {
     router.push("/pages/menu");
   };
   return (
-    <ThemedView style={styles.view}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={styles.title}>
-          SIGMED
-        </ThemedText>
+    <View style={styles.view}>
+      <View style={styles.titleContainer}>
+        <Text style={[styles.title, styles.blackText]}>SIGMED</Text>
         <HelloWave />
-      </ThemedView>
+      </View>
       <View style={styles.contentContainer}>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle" style={styles.subtitle}>
+        <View style={styles.stepContainer}>
+          <Text style={[styles.subtitle, styles.blackText]}>
             Sistema de gestão da Saúde Clínica
-          </ThemedText>
-          <ThemedView style={styles.imageContainer}>
+          </Text>
+          <View style={styles.imageContainer}>
             <Image
               source={require("@/assets/images/adaptive-icon.png")}
               style={styles.sigmedLogo}
             />
-          </ThemedView>
-          <ThemedView style={styles.listaContainer}>
-            <ThemedText style={styles.lista}>
+          </View>
+          <View style={styles.listaContainer}>
               <Text style={styles.subtitleLista}>Gerencie com facilidade</Text>
               {"\n"}
               <Text>* MEDICAMENTOS</Text>
@@ -56,22 +53,27 @@ export default function HomeScreen() {
           <ThemedText type="link">PROSSEGUIR</ThemedText>
         </TouchableOpacity>
       </ThemedView>
-    </ThemedView>
+    </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  contentContainer: {
-    width: "100%",
-    alignItems: "center",
-    paddingHorizontal: 20,
-  },
   view: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 50,
     paddingBottom: 50,
+    backgroundColor: "#FFFFFF", // Fundo sempre branco
+  },
+  blackText: {
+    color: "#000", // Força o texto preto
+  },
+  contentContainer: {
+    width: "100%",
+    alignItems: "center",
+    paddingHorizontal: 20,
   },
   titleContainer: {
     flexDirection: "row",
@@ -85,6 +87,8 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+    fontSize: 32,
+    fontWeight: "bold",
   },
   subtitle: {
     textAlign: "center",
@@ -107,10 +111,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 20,
     marginBottom: 20,
+    gap: 5
   },
   lista: {
     textAlign: "left",
-    color: "#444",
     fontWeight: "600",
   },
   prosseguir: {
@@ -124,8 +128,15 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
   },
+  prosseguirText: {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 16
+  },
   subtitleLista: {
     fontWeight: "bold",
-    fontSize: 22
   },
+  listaItems: {
+    gap: 1
+  }
 });
