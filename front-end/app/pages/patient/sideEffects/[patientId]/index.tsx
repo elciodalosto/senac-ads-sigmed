@@ -77,16 +77,18 @@ export default function PatientSideEffectsPage() {
     try {
       await createSideEffect(data)
       await fetchPatientSideEffects()
+      setModalVisible(false)
       Toast.show({
         type: "success",
         text1: "Efeito colateral adicionado com sucesso",
-        visibilityTime: 1000
+        visibilityTime: 1000,
+        position: "bottom"
       })
-      setModalVisible(false)
     } catch (error) {
       Toast.show({
         type: "error",
-        text1: "Erro ao adicionar erro colateral"
+        text1: "Erro ao adicionar erro colateral",
+        position: "bottom"
       })
       console.log(error)
     }
@@ -98,12 +100,14 @@ export default function PatientSideEffectsPage() {
       await fetchPatientSideEffects()
       Toast.show({
         type: "success",
-        text1: "Efeito colateral deletado com sucesso"
+        text1: "Efeito colateral deletado com sucesso",
+        position: "bottom"
       })
     } catch (error) {
       Toast.show({
         type: "error",
-        text1: "Erro ao deletar efeito colateral"
+        text1: "Erro ao deletar efeito colateral",
+        position: "bottom"
       })
       console.log(error)
     }
@@ -187,6 +191,7 @@ export default function PatientSideEffectsPage() {
       </ScrollView>
 
       <BackButton />
+      <Toast />
     </SafeAreaView>
   )
 }
