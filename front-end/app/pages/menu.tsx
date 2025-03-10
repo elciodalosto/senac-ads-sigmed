@@ -8,7 +8,7 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 
 export default function MyMenu() {
@@ -26,7 +26,7 @@ export default function MyMenu() {
 
     navigation.setOptions({
       title: headerTitle,
-      headerBackVisible: false,
+      headerBackVisible: false
     });
   }, [user, navigation]);
 
@@ -51,13 +51,6 @@ export default function MyMenu() {
             onPress={() => router.navigate("/pages/patientSearch")}
           >
             <ThemedText type="link">BUSCAR PACIENTES</ThemedText>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.prosseguir}
-            onPress={() => router.navigate("/pages/sideEffects")}
-          >
-            <ThemedText type="link">EFEITOS COLATERAIS</ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -90,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
     marginBottom: "20%",
-    zIndex: -1,
+    zIndex: -1
   },
   prosseguir: {
     padding: 10,
@@ -102,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#64FCD9",
     color: "#000",
     fontWeight: "bold",
-    marginBottom: 15,
+    marginBottom: 15
   },
   cards: {
     display: "flex",
@@ -110,12 +103,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
     gap: 10,
-    zIndex: 1,
+    zIndex: 1
   },
   sigmedLogo: {
     width: Dimensions.get("window").width * 0.6,
     height: Dimensions.get("window").width * 0.6,
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   sair: {
     backgroundColor: "#2C2C2C",
@@ -123,6 +116,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     width: "90%",
-    borderRadius: 10,
-  },
+    borderRadius: 10
+  }
 });
