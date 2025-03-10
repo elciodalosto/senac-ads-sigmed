@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 8
   },
   stepContainer: {
     width: "100%",
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 22,
     marginBottom: 10,
-    width: "100%",
+    width: "100%"
   },
   sigmedLogo: {
     width: Dimensions.get("window").width * 0.6,
     height: Dimensions.get("window").width * 0.6,
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   imageContainer: {
     width: "100%",

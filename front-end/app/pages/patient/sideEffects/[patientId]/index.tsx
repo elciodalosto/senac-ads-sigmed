@@ -76,13 +76,13 @@ export default function PatientSideEffectsPage() {
   const handleCreateSideEffect = async (data: NewSideEffect) => {
     try {
       await createSideEffect(data)
-      fetchPatientSideEffects()
-      setModalVisible(false)
+      await fetchPatientSideEffects()
       Toast.show({
         type: "success",
         text1: "Efeito colateral adicionado com sucesso",
         visibilityTime: 1000
       })
+      setModalVisible(false)
     } catch (error) {
       Toast.show({
         type: "error",
@@ -95,11 +95,10 @@ export default function PatientSideEffectsPage() {
   const handleDeleteSideEffect = async (id: number) => {
     try {
       await api_sigmed.delete(`/sideeffect/delete/${id}`)
-      fetchPatientSideEffects()
+      await fetchPatientSideEffects()
       Toast.show({
         type: "success",
-        text1: "Efeito colateral deletado com sucesso",
-        visibilityTime: 1000
+        text1: "Efeito colateral deletado com sucesso"
       })
     } catch (error) {
       Toast.show({
@@ -155,12 +154,12 @@ export default function PatientSideEffectsPage() {
       </View>
 
       <View style={styles.searchBarContainer}>
+        <PlusButton size={25} onPress={() => setModalVisible(true)} />
         <SearchBar
           placeholder="Pesquise o efeito colateral"
           value={searchText}
           onChangeText={setSearchText}
         />
-        <PlusButton size={25} onPress={() => setModalVisible(true)} />
       </View>
 
       <View>
@@ -194,13 +193,9 @@ export default function PatientSideEffectsPage() {
 
 const styles = StyleSheet.create({
   searchBarContainer: {
-    marginTop: 20,
-    width: "80%",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    marginTop: 10,
     alignItems: "center",
-    alignContent: "center",
-    marginBottom: 10,
+    justifyContent: "space-between",
     gap: 20
   },
   container: {
@@ -218,7 +213,8 @@ const styles = StyleSheet.create({
   headerPerfilContainer: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    marginTop: "-10%"
   },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
   subtitle: {

@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
   headerPerfilContainer: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    marginTop: "-10%"
   },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
   subtitle: {

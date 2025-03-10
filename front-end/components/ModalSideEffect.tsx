@@ -83,7 +83,6 @@ const ModalSideEffect: React.FC<ModalSideEffectProps> = ({
   }, [searchText, medications])
 
   const handleSave = (data: SideEffectForm) => {
-    console.log("Dados do formulário:", data)
     try {
       onSave({
         patientId: data.patientId,
