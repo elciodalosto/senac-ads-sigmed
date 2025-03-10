@@ -27,8 +27,8 @@ export const getMedicationsByPatient = async (req: Request, res: Response) => {
       })),
     }));
 
-    return res.status(200).json(medicationHistory);
+     res.status(200).json(medicationHistory);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao buscar medicamentos" });
+     res.status(500).json({ error: "Erro ao buscar medicamentos" });
   }
 };
