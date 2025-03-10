@@ -76,6 +76,15 @@ export default function PatientList() {
           <FlatList
             data={filteredPatients}
             keyExtractor={(item) => item.id.toString()}
+            {...(filteredPatients.length === 0 && {
+              ListEmptyComponent: () => (
+                <Text
+                  style={{ textAlign: "center", marginTop: 50, color: "#900" }}
+                >
+                  Nenhum paciente encontrado pelo nome: "{searchText}"
+                </Text>
+              ),
+            })}
             renderItem={({ item }: { item: Patient }) => (
               <>
                 <TouchableOpacity
