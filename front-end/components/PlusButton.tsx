@@ -4,12 +4,13 @@ import { Plus } from "lucide-react-native"
 
 interface PlusButtonProps {
   onPress: () => void
+  size?: number
 }
 
-const PlusButton: React.FC<PlusButtonProps> = ({ onPress }) => {
+const PlusButton: React.FC<PlusButtonProps> = ({ onPress, size = 25 }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Plus size={24} color="#fff" />
+      <Plus size={size} color="#fff" />
     </TouchableOpacity>
   )
 }
@@ -21,9 +22,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#4CAF50",
     paddingVertical: 12,
-    paddingHorizontal: 20,
     borderRadius: 30,
-    elevation: 5
+    elevation: 5,
+    width: 50
   },
   buttonText: {
     color: "#fff",
