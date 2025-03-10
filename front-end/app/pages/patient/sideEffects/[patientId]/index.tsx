@@ -81,14 +81,14 @@ export default function PatientSideEffectsPage() {
       Toast.show({
         type: "success",
         text1: "Efeito colateral adicionado com sucesso",
-        visibilityTime: 1000,
-        position: "bottom"
+        position: "top",
+        visibilityTime: 1500
       })
     } catch (error) {
       Toast.show({
         type: "error",
         text1: "Erro ao adicionar erro colateral",
-        position: "bottom"
+        position: "top"
       })
       console.log(error)
     }
@@ -101,13 +101,14 @@ export default function PatientSideEffectsPage() {
       Toast.show({
         type: "success",
         text1: "Efeito colateral deletado com sucesso",
-        position: "bottom"
+        visibilityTime: 1500,
+        position: "top"
       })
     } catch (error) {
       Toast.show({
         type: "error",
         text1: "Erro ao deletar efeito colateral",
-        position: "bottom"
+        position: "top"
       })
       console.log(error)
     }
