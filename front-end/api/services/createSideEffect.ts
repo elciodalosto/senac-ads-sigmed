@@ -7,8 +7,6 @@ interface NewSideEffect {
 }
 
 export const createSideEffect = async (data: NewSideEffect) => {
-  console.log("cheguei na função")
-  console.log("data que chega", data)
   try {
     const response = await api_sigmed.post("/sideeffect/create", data, {
       headers: {
