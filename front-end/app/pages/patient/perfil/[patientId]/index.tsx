@@ -1,49 +1,42 @@
-import { router, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Button,
-  Pressable,
-} from "react-native";
-import { api_sigmed } from "@/api/axios";
-import { useLocalSearchParams } from "expo-router";
-import { CircleUserRound } from "lucide-react-native";
-import BackButton from "@/components/ui/BackButton";
-import CustomButton from "@/components/ui/CustomButton";
+import { router, useRouter } from "expo-router"
+import { useEffect, useState } from "react"
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
+import { api_sigmed } from "@/api/axios"
+import { useLocalSearchParams } from "expo-router"
+import { CircleUserRound } from "lucide-react-native"
+import BackButton from "@/components/ui/BackButton"
+import CustomButton from "@/components/ui/CustomButton"
 
 interface Patient {
-  id: number;
-  name: string;
-  cpf: string;
-  birthDate: string;
-  gender: string;
-  medicalRecord: string;
-  createdAt: string;
+  id: number
+  name: string
+  cpf: string
+  birthDate: string
+  gender: string
+  medicalRecord: string
+  createdAt: string
 }
 
 export default function PatientPerfil() {
-  const { patientId } = useLocalSearchParams<{ patientId: string }>();
-  const [patient, setPatient] = useState<Patient | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const { patientId } = useLocalSearchParams<{ patientId: string }>()
+  const [patient, setPatient] = useState<Patient | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
 
   const fetchPatientPerfil = async () => {
     try {
-      const response = await api_sigmed.get(`/patient/get/${patientId}`);
-      setPatient(response.data);
+      const response = await api_sigmed.get(`/patient/get/${patientId}`)
+      setPatient(response.data)
     } catch (err: any) {
-      setError(err);
+      setError(err)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    if (patientId) fetchPatientPerfil();
-  }, [patientId]);
+    if (patientId) fetchPatientPerfil()
+  }, [patientId])
 
   if (loading) {
     return (
@@ -52,7 +45,7 @@ export default function PatientPerfil() {
           <ActivityIndicator size="large" color="#333" />
         </View>
       </>
-    );
+    )
   }
 
   if (error) {
@@ -62,7 +55,7 @@ export default function PatientPerfil() {
           <Text>Erro ao carregar os detalhes do paciente</Text>
         </View>
       </>
-    );
+    )
   }
 
   if (!patient) {
@@ -72,7 +65,7 @@ export default function PatientPerfil() {
           <Text>Paciente não encontrado</Text>
         </View>
       </>
-    );
+    )
   }
 
   return (
@@ -115,7 +108,7 @@ export default function PatientPerfil() {
         <BackButton />
       </View>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -123,14 +116,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
   },
   buttonsContainer: {
     width: "100%",
     gap: 10,
     flexDirection: "column",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 20
   },
   subtitlesContainer: {
     width: "100%",
@@ -138,15 +131,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#ccc",
     gap: 20,
-    height: "75%",
+    height: "75%"
   },
   headerPerfilContainer: {
-    alignItems: "center",
+    alignItems: "center"
   },
   title: { fontSize: 24, fontWeight: "bold", marginBottom: 20 },
   subtitle: {
     fontSize: 17,
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
-  center: { flex: 1, justifyContent: "center", alignItems: "center" },
-});
+  center: { flex: 1, justifyContent: "center", alignItems: "center" }
+})

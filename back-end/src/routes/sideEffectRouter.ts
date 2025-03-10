@@ -1,13 +1,20 @@
 import express from "express"
-import * as EffectController from "../controllers/sideEffectController"
+import * as SideEffectController from "../controllers/sideEffectController"
 
 const sideEffectRouter = express.Router()
 
-sideEffectRouter.post("/create", EffectController.createSideEffect)
+sideEffectRouter.post("/create", SideEffectController.createSideEffect)
 
 sideEffectRouter.get(
   "/get/:patientId",
-  EffectController.getSideEffectsByPatient
+  SideEffectController.getSideEffectsByPatient
+)
+
+sideEffectRouter.put("/update", SideEffectController.updateSideEffect)
+
+sideEffectRouter.delete(
+  "/delete/:sideEffectId",
+  SideEffectController.deleteSideEffect
 )
 
 export default sideEffectRouter

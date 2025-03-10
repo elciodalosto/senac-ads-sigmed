@@ -2,52 +2,44 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TextInput,
   View,
-} from "react-native";
-import React, { useState, useEffect } from "react";
-import { api_sigmed } from "@/api/axios";
-import { User } from "lucide-react-native";
-import { SearchBar } from "@/components/SearchBar";
-import { useRouter } from "expo-router";
-import BackButton from "@/components/ui/BackButton";
-
-interface Patient {
-  id: number;
-  name: string;
-  cpf: string;
-  birthDate: Date;
-  gender: string;
-  medicalRecord: string;
-  createdAt: Date;
-}
+  TouchableOpacity
+} from "react-native"
+import React, { useState, useEffect } from "react"
+import { api_sigmed } from "@/api/axios"
+import { Search, User } from "lucide-react-native"
+import { SearchBar } from "@/components/SearchBar"
+import { useRouter } from "expo-router"
+import BackButton from "@/components/ui/BackButton"
+import { Patient } from "@/types/patient"
 
 export default function PatientList() {
-  const [patientList, setPatientList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [searchText, setSearchText] = useState("");
-  const [error, setError] = useState<Error | null>(null);
-  const router = useRouter();
+  const [patientList, setPatientList] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [searchText, setSearchText] = useState("")
+  const [error, setError] = useState<Error | null>(null)
+  const router = useRouter()
 
   const fetchPatients = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await api_sigmed.get("/patient/getall");
-      setPatientList(response.data);
+      const response = await api_sigmed.get("/patient/getall")
+      setPatientList(response.data)
     } catch (error) {
-      console.log("Erro:", error);
+      console.log("Erro:", error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchPatients();
-  }, []);
+    fetchPatients()
+  }, [])
 
   const filteredPatients = patientList.filter((item: Patient) =>
     item?.name.toLowerCase().includes(searchText.toLowerCase())
-  );
+  )
 
   if (error) {
     return (
@@ -56,7 +48,7 @@ export default function PatientList() {
           <Text>Erro: {error.message}</Text>
         </View>
       </>
-    );
+    )
   }
 
   return (
@@ -75,7 +67,7 @@ export default function PatientList() {
         ) : (
           <FlatList
             data={filteredPatients}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={item => item.id.toString()}
             {...(filteredPatients.length === 0 && {
               ListEmptyComponent: () => (
                 <Text
@@ -83,7 +75,7 @@ export default function PatientList() {
                 >
                   Nenhum paciente encontrado pelo nome: "{searchText}"
                 </Text>
-              ),
+              )
             })}
             renderItem={({ item }: { item: Patient }) => (
               <>
@@ -105,7 +97,7 @@ export default function PatientList() {
         </View>
       </View>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -115,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 20
   },
   searchContainer: {
     flexDirection: "row",
@@ -123,12 +115,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 10,
     padding: 5,
-    marginBottom: 20,
+    marginBottom: 20
   },
   searchContainerFocused: {
     borderStyle: "solid",
     borderWidth: 2,
-    borderColor: "#64FCD9",
+    borderColor: "#64FCD9"
   },
   searchInput: { flex: 1, padding: 5 },
   searchIcon: { marginRight: 5 },
@@ -140,13 +132,13 @@ const styles = StyleSheet.create({
     borderColor: "#e0e0e0",
     borderRadius: 10,
     padding: 15,
-    marginBottom: 10,
+    marginBottom: 10
   },
   icon: { marginRight: 10 },
   patientName: { fontSize: 16, flex: 1, paddingLeft: 10 },
   quantity: { fontSize: 14, color: "#888" },
   backButton: {
     bottom: 0,
-    position: "absolute",
-  },
-});
+    position: "absolute"
+  }
+})

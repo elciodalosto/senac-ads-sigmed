@@ -1,14 +1,14 @@
-import React from "react";
-import { TouchableOpacity, Text } from "react-native";
-import { useRouter } from "expo-router";
-import { ArrowLeft } from "lucide-react-native";
+import React from "react"
+import { TouchableOpacity, Text } from "react-native"
+import { useRouter } from "expo-router"
+import { ArrowLeft } from "lucide-react-native"
 
 const BackButton = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleGoBack = () => {
-    router.back();
-  };
+    router.back()
+  }
 
   return (
     <TouchableOpacity
@@ -25,7 +25,7 @@ const BackButton = () => {
         bottom: 100,
         left: 20,
         right: 20,
-        zIndex: 99,
+        zIndex: 99
       }}
     >
       {" "}
@@ -34,13 +34,13 @@ const BackButton = () => {
           marginLeft: 5,
           color: "#ffff",
           fontSize: 17,
-          fontWeight: "bold",
+          fontWeight: "bold"
         }}
       >
         Voltar
       </Text>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
-export default BackButton;
+export default BackButton
