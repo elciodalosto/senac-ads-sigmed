@@ -19,6 +19,7 @@ import ModalSideEffect from "@/components/ModalSideEffect"
 import { Inventory, Medication } from "@/types/medication"
 import { createSideEffect } from "@/api/services/createSideEffect"
 import Toast from "react-native-toast-message"
+import PlusButton from "@/components/PlusButton"
 
 interface NewSideEffect {
   patientId: number
@@ -91,6 +92,24 @@ export default function PatientSideEffectsPage() {
     }
   }
 
+  const handleDeleteSideEffect = async (id: number) => {
+    try {
+      await api_sigmed.delete(`/sideeffect/delete/${id}`)
+      fetchPatientSideEffects()
+      Toast.show({
+        type: "success",
+        text1: "Efeito colateral deletado com sucesso",
+        visibilityTime: 1000
+      })
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Erro ao deletar efeito colateral"
+      })
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     if (patientId) {
       fetchPatientInfo()
@@ -128,17 +147,22 @@ export default function PatientSideEffectsPage() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", padding: 10 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", padding: 15 }}>
       <View style={styles.headerPerfilContainer}>
         <HeartCrack size={50} color="black" />
         <Text style={styles.title}>Efeitos colaterais</Text>
         <Text style={styles.title}>{patient.name}</Text>
       </View>
-      <SearchBar
-        placeholder="Pesquise o efeito colateral"
-        value={searchText}
-        onChangeText={setSearchText}
-      />
+
+      <View style={styles.searchBarContainer}>
+        <SearchBar
+          placeholder="Pesquise o efeito colateral"
+          value={searchText}
+          onChangeText={setSearchText}
+        />
+        <PlusButton size={25} onPress={() => setModalVisible(true)} />
+      </View>
+
       <View>
         <ModalSideEffect
           visible={modalVisible}
@@ -157,13 +181,8 @@ export default function PatientSideEffectsPage() {
             description={`Medicamento: ${sideEffect.medication.name}`}
             backgroundColor="#f0f8ff"
             borderColor="#87cefa"
-            showEdit={true}
-            onEdit={() => {
-              setModalVisible(true)
-            }}
-            onDelete={() => {
-              console.log("deletar esse sideEffect", sideEffect.id)
-            }}
+            showDelete={true}
+            onDelete={() => handleDeleteSideEffect(sideEffect.id)}
           />
         ))}
       </ScrollView>
@@ -174,6 +193,16 @@ export default function PatientSideEffectsPage() {
 }
 
 const styles = StyleSheet.create({
+  searchBarContainer: {
+    marginTop: 20,
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    alignContent: "center",
+    marginBottom: 10,
+    gap: 20
+  },
   container: {
     padding: 10,
     alignItems: "center",

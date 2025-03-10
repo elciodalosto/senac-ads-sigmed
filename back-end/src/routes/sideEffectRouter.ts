@@ -10,13 +10,10 @@ sideEffectRouter.get(
   SideEffectController.getSideEffectsByPatient
 )
 
-sideEffectRouter.put(
-  "/update/:patientId",
-  SideEffectController.updateSideEffect
-)
+sideEffectRouter.put("/update", SideEffectController.updateSideEffect)
 
 sideEffectRouter.delete(
-  "/delete/:patientId",
+  "/delete/:sideEffectId",
   SideEffectController.deleteSideEffect
 )
 
