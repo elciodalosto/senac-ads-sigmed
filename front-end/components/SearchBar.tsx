@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 10,
     padding: 5,
-    marginBottom: 20
+    marginBottom: 10
   },
   searchInput: { flex: 1, padding: 5 }
 })
