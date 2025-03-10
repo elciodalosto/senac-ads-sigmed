@@ -10,12 +10,11 @@ import { api_sigmed } from "@/api/axios"
 import { useLocalSearchParams } from "expo-router"
 import BackButton from "@/components/ui/BackButton"
 import { Patient } from "@/types/patient"
-import { SideEffect } from "@/types/sideEffect"
-import Card from "@/components/Card"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ClipboardPlus } from "lucide-react-native"
 import { Treatment } from "@/types/treatment"
 import TreatmentCard from "@/components/TreatmentCard"
+import { SearchBar } from "@/components/SearchBar"
 
 export default function PatientTreatmentsPage() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>()
@@ -23,6 +22,7 @@ export default function PatientTreatmentsPage() {
   const [patientTreatments, setPatientTreatments] = useState<Treatment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [searchText, setSearchText] = useState("")
 
   const fetchPatientInfo = async () => {
     try {
@@ -52,6 +52,10 @@ export default function PatientTreatmentsPage() {
       fetchPatientTreatments()
     }
   }, [patientId])
+
+  const filteredTreatments = patientTreatments.filter((treatment: Treatment) =>
+    treatment.description.toLowerCase().includes(searchText.toLowerCase())
+  )
 
   if (loading) {
     return (
@@ -97,8 +101,14 @@ export default function PatientTreatmentsPage() {
           <Text style={styles.title}>Tratamentos </Text>
           <Text style={styles.title}>{patient.name} </Text>
         </View>
+        <SearchBar
+          placeholder="Pesquise o tratamento"
+          value={searchText}
+          onChangeText={setSearchText}
+        />
+
         <ScrollView contentContainerStyle={styles.container}>
-          {patientTreatments.map((treatment: Treatment, index) => (
+          {filteredTreatments.map((treatment: Treatment, index) => (
             <TreatmentCard
               key={index}
               title={treatment.description}

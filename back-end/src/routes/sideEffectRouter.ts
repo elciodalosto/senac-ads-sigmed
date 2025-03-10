@@ -10,4 +10,14 @@ sideEffectRouter.get(
   SideEffectController.getSideEffectsByPatient
 )
 
+sideEffectRouter.put(
+  "/update/:patientId",
+  SideEffectController.updateSideEffect
+)
+
+sideEffectRouter.delete(
+  "/delete/:patientId",
+  SideEffectController.deleteSideEffect
+)
+
 export default sideEffectRouter

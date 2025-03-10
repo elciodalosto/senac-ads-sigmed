@@ -4,8 +4,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
-  ScrollView,
-  Button
+  ScrollView
 } from "react-native"
 import { api_sigmed } from "@/api/axios"
 import { useLocalSearchParams } from "expo-router"
@@ -15,13 +14,27 @@ import { SideEffect } from "@/types/sideEffect"
 import Card from "@/components/Card"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { HeartCrack } from "lucide-react-native"
+import { SearchBar } from "@/components/SearchBar"
+import ModalSideEffect from "@/components/ModalSideEffect"
+import { Inventory, Medication } from "@/types/medication"
+import { createSideEffect } from "@/api/services/createSideEffect"
+import Toast from "react-native-toast-message"
+
+interface NewSideEffect {
+  patientId: number
+  medicationId: number
+  description: string
+}
 
 export default function PatientSideEffectsPage() {
   const { patientId } = useLocalSearchParams<{ patientId: string }>()
+  const [modalVisible, setModalVisible] = useState(false)
   const [patient, setPatient] = useState<Patient | null>(null)
   const [sideEffects, setSideEffects] = useState<SideEffect[]>([])
+  const [medications, setMedications] = useState<Medication[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [searchText, setSearchText] = useState("")
 
   const fetchPatientInfo = async () => {
     try {
@@ -45,12 +58,50 @@ export default function PatientSideEffectsPage() {
     }
   }
 
+  const fetchInventoryMedications = async () => {
+    try {
+      const response = await api_sigmed.get(`/inventory/getall`)
+      const onlyMedications = response.data.map(
+        (item: Inventory) => item.medication
+      )
+      setMedications(onlyMedications)
+    } catch (err: any) {
+      setError(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleCreateSideEffect = async (data: NewSideEffect) => {
+    try {
+      await createSideEffect(data)
+      fetchPatientSideEffects()
+      setModalVisible(false)
+      Toast.show({
+        type: "success",
+        text1: "Efeito colateral adicionado com sucesso",
+        visibilityTime: 1000
+      })
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Erro ao adicionar erro colateral"
+      })
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     if (patientId) {
       fetchPatientInfo()
       fetchPatientSideEffects()
+      fetchInventoryMedications()
     }
   }, [patientId])
+
+  const filteredSideEffects = sideEffects.filter((item: SideEffect) =>
+    item?.description.toLowerCase().includes(searchText.toLowerCase())
+  )
 
   if (loading) {
     return (
@@ -83,17 +134,40 @@ export default function PatientSideEffectsPage() {
         <Text style={styles.title}>Efeitos colaterais</Text>
         <Text style={styles.title}>{patient.name}</Text>
       </View>
+      <SearchBar
+        placeholder="Pesquise o efeito colateral"
+        value={searchText}
+        onChangeText={setSearchText}
+      />
+      <View>
+        <ModalSideEffect
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onSave={handleCreateSideEffect}
+          medications={medications}
+          data={{ patientId: Number(patientId) }}
+        />
+      </View>
+
       <ScrollView contentContainerStyle={styles.container}>
-        {sideEffects.map((sideEffect: SideEffect, index) => (
+        {filteredSideEffects.map((sideEffect: SideEffect, index) => (
           <Card
             key={index}
             title={sideEffect.description}
             description={`Medicamento: ${sideEffect.medication.name}`}
             backgroundColor="#f0f8ff"
             borderColor="#87cefa"
+            showEdit={true}
+            onEdit={() => {
+              setModalVisible(true)
+            }}
+            onDelete={() => {
+              console.log("deletar esse sideEffect", sideEffect.id)
+            }}
           />
         ))}
       </ScrollView>
+
       <BackButton />
     </SafeAreaView>
   )
