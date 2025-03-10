@@ -61,6 +61,15 @@ export default function MediceStock() {
           <FlatList
             data={filteredItems}
             keyExtractor={(item) => item.id.toString()}
+            {...(filteredItems.length === 0 && {
+              ListEmptyComponent: () => (
+                <>
+                  <Text style={{ textAlign: "center", marginTop: 50, color: "#900" }}>
+                    Nenhum medicamento encontrado pelo nome: "{searchText}"
+                  </Text>
+                </>
+              ),
+            })}
             renderItem={({ item }: { item: InventoryItem }) => (
               <View style={styles.card}>
                 <Layers size={24} />
